@@ -1,7 +1,7 @@
 ---
-title: "Responsiveness in immigration enforcement"
-author: "Angelo Dagonel (TF)"
-description: "County-level ICE compliance under constituent preferences and electoral dynamics"
+title: "Department of Energy Budgetary Requests and Allocations"
+author: "Jing-Jing Shen"
+description: "Change in DOE budgetary requests to Congress and the subsequent appropriations"
 output:
   distill::distill_article:
     self_contained: false
@@ -10,6 +10,12 @@ output:
 
 
 ## Project thoughts
+
+For my final project, I am hoping to examine budgetary data from the Department of Energy over the last several decades (1978--). As part of my senior thesis in government, I am looking into how federal climate and energy policy has shaped research priorities at national laboratories of the DOE, particularly in renewable energy, and I would like to bolster this study with an investigation into the DOE's budgetary history. More specifically, I would like to gain a deeper understanding of the relationship between DOE budget requests to Congress and the ultimate appropriations made, the breakdown of this budget by sector and research area, as well as what policy factors and/or energy economics may be related to this budgetary information. 
+
+--
+
+From Sample Project
 
 I am interested in exploring data related to immigration enforcement and immigration preferences. A working project with Asya Magazinnik (Massachusetts Institute of Technology) explores how county-level compliance of Sheriff's offices with ICE detainer requests relates to ideal point estimates of immigration preferences. Specifically: our project asks whether the public's immigration preferences, restrictive or accommodating, influences how local law enforcement agencies comply with bureaucratic delegation from ICE.
 
