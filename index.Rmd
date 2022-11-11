@@ -17,11 +17,37 @@ To parse this potential relationship, I will be drawing upon data from the follo
 
 1. [DOE Budget Authority for Energy Research, Development, and Demonstration Database] (https://www.belfercenter.org/publication/database-us-department-energy-doe-budgets-energy-research-development-demonstration-1): This website contains an Excel file containing tables of appropriations by Congress to the Department of Energy from fiscal year 1978-2022. These numbers include the budget requests by the DOE to Congress each year, along with the ultimate appropriation amount from Congress, as well as the breakdowns of the agency's budget by research areas (i.e., fossil fuels, energy efficiency, hydrogen, renewable energy, nuclear energy). I will need to convert this data into csv form.
 
-2. [U.S. Politics: Democrat vs. Republican Control of Congress and the Presidency: Political Party Overlays in Data Planet Statistical Datasets] (https://data-planet.libguides.com/politicalpartycontrol): This data encompasses the counts of House Democrats, House Republicans, and House Other Parties by seats from 1856-2020, alongside the analogous counts of Senate Democrats and Senate Republicans over the same time period. In my analysis, I will need to filter this data to the years for which I have data from #1, in addition to distilling the overall party in control of the House and Senate for each of my individual fiscal years of interest. 
-
-3. [U.S. Presidents, Date Range of Term(s), and Party Affiliation] (https://gist.github.com/namuol/2657233): List of all the past United States Presidents, including the starting and ending dates for their terms, and their party affiliation. I will need to filter this data to Presidents whose terms align with the years for which I have data from #1, in addition to specifying the President for each individual fiscal year examined above (rather than having their term years be listed as a range).
+2. [Party Government Since 1957] (https://history.house.gov/Institution/Presidents-Coinciding/Party-Government/): This data encompasses the list of past United States Presidents, Congressional party majorities, and a designation of whether each Congress consisted of Divided or Unified Government. I have cleaned the data manually to distill this information to align with each of my individual fiscal years of interest. 
 
 Does Congress's annual appropriation of funding to the United States Department of Energy (DOE) (dependent variable #1) depend on the political party that is in power in Congress (independent variable #1) and/or the Presidency (independent variable #2)? More specifically, is Congressional appropriation of funding larger when Democrats control Congress and/or the Presidency, compared to when Republicans are the majority party? In addition, upon the appropriation of this funding, does the partisan affiliation of the majority party in Congress and/or the party that holds the Presidency also influence if the portion of the DOE's budget is allocated toward renewable and clean energy projects (dependent variable #2)? My hypothesis is that both the Congressional appropriation of funding to the DOE would be larger when Democrats control Congress and/or the Presidency, as in the United States, the Democratic Party has become associated with policies entailing a larger role for government, while the Republican Party favors less government involvement. Historically, Democrats (particularly since the term of President Jimmy Carter) have been more likely to support increased funding for national governmental agencies, while Republicans oppose this (especially beginning during President Ronald Reagan's term). As such, my explanatory variable of U.S. political leaders' (that is Congressional officials, representing the legislative branch, and the President, who helms the executive branch) partisan association is readily measured with their official party identification. I will code datasets #1 and #2 so that each President is assigned to a unique value that represents one of Democrats, Republicans, and Independent/Other parties, and I will apply this numerical code designation to each Congress as well. My outcome variable of interest is twofold: (1) the financial dollar amount of Congress's final budgetary appropriation to the DOE during each fiscal year, and (2) the breakdown of this overall budget by research sector. The measurements for these dependent variables are recorded every year based on the DOE's annual fiscal reports, obtained for the years 1978-2022. If I see that (1) the Congressional appropriation to the DOE and (2) the proportion of this budget that is set aside for clean energy and renewables energy research is larger during periods of Democratic Congressional/Presidential control, this would lend support for my hypothesis. Conversely, if I note that (1) the Congressional appropriation to the DOE and (2) the proportion of this amount allocated to clean and renewable energy research is smaller or equal in the case of Democratic and Republican control, this would support rejecting my hypothesis. Running a regression of (1) Congressional appropriations to the DOE and (2) proportion of (1) that is assigned to clean or renewable energy on the variables for partisan control, a positive, significant coefficient would provide support for my hypothesis.
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+dataset <- read_csv("gov50milestone3.csv")
+dataset
+```
+```{r}
+dataset_graph1 <- dataset |>
+  ggplot(mapping = aes(x = fiscal_year, 
+                       y = total_doe_rnd), width = 12, height = 20) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  geom_col(aes(fill = president_party)) +
+  scale_fill_manual(values = c(Democrat = "blue", 
+                               Republican = "red")) +
+  labs(x = "Fiscal Year", 
+       y = "Total DOE Energy R&D FY Requests (2020$)",
+       title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
+       caption = "SOURCE: Gallagher, K.S. and L.D. Anadon, 'DOE Budget Authority for Energy Research, Development, and Demonstration Database,' The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
+       fill = "President Party") 
+  
+dataset_graph1
+
+# xlim = c(1978, 2022))
+```
 
 --
 
