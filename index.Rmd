@@ -33,20 +33,26 @@ dataset
 ```{r}
 dataset_graph1 <- dataset |>
   ggplot(mapping = aes(x = fiscal_year, 
-                       y = total_doe_rnd), width = 12, height = 20) +
+                       y = total_doe_rnd), width = 25, height = 20) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   geom_col(aes(fill = president_party)) +
   scale_fill_manual(values = c(Democrat = "blue", 
                                Republican = "red")) +
   labs(x = "Fiscal Year", 
-       y = "Total DOE Energy R&D FY Requests (2020$)",
+       y = "DOE Energy R&D FY Requests (2020$)",
        title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
-       caption = "SOURCE: Gallagher, K.S. and L.D. Anadon, 'DOE Budget Authority for Energy Research, Development, and Demonstration Database,' The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
+       caption = "SOURCE: 
+       Gallagher, K.S. and L.D. Anadon, 
+       DOE Budget Authority for Energy Research, Development, and Demonstration Database,' 
+       The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
+       and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
        fill = "President Party") 
   
 dataset_graph1
 
 # xlim = c(1978, 2022))
+
+# Future ideas: how track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C
 ```
 
 --
