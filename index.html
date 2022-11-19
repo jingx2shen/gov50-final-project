@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["chart1.pdf","gov50milestone3.csv","gov50milestone3all.xls","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["chart1.pdf","gov50milestone3.csv","gov50milestone3all.xls","gov50milestone4all.csv","gov50milestone4all.numbers","gov50milestone4all.xlsx","gov50milestone4allcsv.csv","gov50milestone4allcsv.xlsx","gov50milestone4binary.csv","gov50milestone4binary.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1567,7 +1567,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Democrat <span class='op'>=</span> <span class='st'>"blue"</span>, </span>
 <span>                               Republican <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"Total DOE Energy R&amp;D FY Requests (2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests (2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total DOE Energy R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon, </span></span>
@@ -1578,13 +1578,85 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  </span>
 <span><span class='va'>dataset_graph1</span></span></code></pre>
 </div>
-<img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
+<img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" />
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># xlim = c(1978, 2022))</span></span>
 <span></span>
 <span><span class='co'># Future ideas: how track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C</span></span></code></pre>
 </div>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>02138</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>dataset_binary</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"gov50milestone4binary.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>dataset_binary</span></span></code></pre>
+</div>
+<pre><code># A tibble: 47 × 255
+   fiscal_year total…¹ re_to…² presi…³ presi…⁴ house…⁵ senat…⁶ party…⁷
+   &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1 1978          9859.   2172. Carter        1 Democr… Democr… Unified
+ 2 1979          9661.   2540. Carter        1 Democr… Democr… Unified
+ 3 1980          9318.   2486  Carter        1 Democr… Democr… Unified
+ 4 1981          8587.   2210. Carter        1 Democr… Democr… Unified
+ 5 1982          5506.   1002. Reagan        0 Democr… Republ… Divided
+ 6 1983          4152.    724. Reagan        0 Democr… Republ… Divided
+ 7 1984          3853.    581. Reagan        0 Democr… Republ… Divided
+ 8 1985          3370.    561. Reagan        0 Democr… Republ… Divided
+ 9 1986          2972.    449. Reagan        0 Democr… Republ… Divided
+10 1987          2538.    378. Reagan        0 Democr… Republ… Divided
+# … with 37 more rows, 247 more variables: cong &lt;chr&gt;, ...10 &lt;chr&gt;,
+#   ...11 &lt;dbl&gt;, ...12 &lt;lgl&gt;, ...13 &lt;lgl&gt;, ...14 &lt;lgl&gt;, ...15 &lt;lgl&gt;,
+#   ...16 &lt;lgl&gt;, ...17 &lt;lgl&gt;, ...18 &lt;lgl&gt;, ...19 &lt;lgl&gt;, ...20 &lt;lgl&gt;,
+#   ...21 &lt;lgl&gt;, ...22 &lt;lgl&gt;, ...23 &lt;lgl&gt;, ...24 &lt;lgl&gt;, ...25 &lt;lgl&gt;,
+#   ...26 &lt;lgl&gt;, ...27 &lt;lgl&gt;, ...28 &lt;lgl&gt;, ...29 &lt;lgl&gt;, ...30 &lt;lgl&gt;,
+#   ...31 &lt;lgl&gt;, ...32 &lt;lgl&gt;, ...33 &lt;lgl&gt;, ...34 &lt;lgl&gt;, ...35 &lt;lgl&gt;,
+#   ...36 &lt;lgl&gt;, ...37 &lt;lgl&gt;, ...38 &lt;lgl&gt;, ...39 &lt;lgl&gt;, …</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>dataset_mut</span> <span class='op'>&lt;-</span> <span class='va'>dataset_binary</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>president_party_binary <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>president_party</span> <span class='op'>==</span> <span class='fl'>1</span>, <span class='st'>"Democrat"</span>, <span class='st'>"Republican"</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>base_diff</span> <span class='op'>&lt;-</span> <span class='va'>dataset_mut</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>total_doe_rnd</span> <span class='op'>~</span> <span class='va'>president_party_binary</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in means"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Democrat"</span>, <span class='st'>"Republican"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>base_diff</span></span></code></pre>
+</div>
+<pre><code>Response: total_doe_rnd (numeric)
+Explanatory: president_party_binary (factor)
+# A tibble: 1 × 1
+   stat
+  &lt;dbl&gt;
+1  790.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># 2-sided permutation hypothesis test</span></span>
+<span><span class='va'>base_p</span> <span class='op'>&lt;-</span> <span class='va'>dataset_mut</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>total_doe_rnd</span> <span class='op'>~</span> <span class='va'>president_party_binary</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in means"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Democrat"</span>, <span class='st'>"Republican"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>base_diff</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span><span class='va'>base_p</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.266</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='va'>dataset_mut</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>total_doe_rnd</span> <span class='op'>~</span> <span class='va'>president_party_binary</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in means"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Democrat"</span>, <span class='st'>"Republican"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='fl'>790.15</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span><span class='va'>dist</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>The observed difference between the mean total DOE R&amp;D budgets between all Democratic presidencies and Republican presidencies is 790.15 dollars (D-R), and the corresponding p-value is 0.214. Considering an <span class="math inline">\(/alpha\)</span> of 0.05, since p &gt; 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the DOE R&amp;D budget.</p>
 <p>–</p>
 <p>From Sample Project</p>
 <p>I am interested in exploring data related to immigration enforcement and immigration preferences. A working project with Asya Magazinnik (Massachusetts Institute of Technology) explores how county-level compliance of Sheriff’s offices with ICE detainer requests relates to ideal point estimates of immigration preferences. Specifically: our project asks whether the public’s immigration preferences, restrictive or accommodating, influences how local law enforcement agencies comply with bureaucratic delegation from ICE.</p>
@@ -1597,7 +1669,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>TRAC data provides us with our outcome variable, the proportion of ICE detainer requests that are complied with; CES data provides us with our explanatory variable, public immigration policy preferences; and the Sheriff electoral data provides us with a grouping variable.</p>
 <p>–</p>
 <p>Does unified government enhance legislative productivity? In this study, I plan to examine the extent to which periods of unified government produce more landmark laws. I hypothesize that legislative productivity increases during periods of unified government in which one party controls both Houses of Congress and the presidency relative to periods of divided government. During periods of unified government, I expect that it is more likely for major bills to pass both Houses and gain the president’s signature. During periods of divided government, it is more difficult to reach a consensus around legislation that can pass each House and gain the president’s approval. My sample is comprised of each of the 79th (1945-1946) through 103rd (1993-1994) Congresses. My unit of analysis is a Congress (e.g., the 88th Congress). The explanatory variable of interest is whether there is unified government (both Houses and the presidency are controlled by the same party) or divided government. The variable is coded =1 for unified government and =0 for divided government. My outcome variable is the count of landmark pieces of legislation passed in a given Congress. For instance, if the variable were coded =11, it would mean that 11 pieces of landmark legislation were signed into law in that Congress. This variable is measured from David Mayhew’s data set on landmark legislation and relies on Mayhew’s expert knowledge to classify legislation as “landmark.” If I observe greater landmark legislative productivity under unified government relative to divided government, this would provide support for my hypothesis. If, on the other hand, I observe less productivity or the same level of productivity under unified government, this would provide evidence against my hypothesis. When I run my regression of the count of landmark legislation on the unified government indicator variable, a positive, significant coefficient would indicate support for my hypothesis.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -1605,6 +1677,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

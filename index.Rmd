@@ -26,7 +26,7 @@ library(tidyverse)
 library(ggplot2)
 ```
 
-```{r}
+```{r dataviz}
 dataset <- read_csv("gov50milestone3.csv")
 dataset
 ```
@@ -54,6 +54,44 @@ dataset_graph1
 
 # Future ideas: how track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C
 ```
+
+```{r}
+set.seed(02138)
+library(infer)
+
+dataset_binary <- read_csv("gov50milestone4binary.csv")
+dataset_binary
+```
+```{r}
+dataset_mut <- dataset_binary |>
+  mutate(president_party_binary = if_else(president_party == 1, "Democrat", "Republican")) 
+
+base_diff <- dataset_mut |>
+  specify(total_doe_rnd ~ president_party_binary) |>
+  calculate(stat = "diff in means", order = c("Democrat", "Republican"))
+base_diff
+
+# 2-sided permutation hypothesis test
+base_p <- dataset_mut |>
+  specify(total_doe_rnd ~ president_party_binary) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Democrat", "Republican")) |>
+  get_p_value(obs_stat = base_diff, direction = "both")
+base_p
+
+dist <- dataset_mut |>
+  specify(total_doe_rnd ~ president_party_binary) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Democrat", "Republican")) |>
+  visualize() +
+  shade_p_value(obs_stat = 790.15, direction = "both")
+dist
+```
+
+The observed difference between the mean total DOE R&D budgets between all Democratic presidencies and Republican presidencies is 790.15 dollars (D-R), and the corresponding p-value is 0.214. Considering an $/alpha$ of 0.05, since p > 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the DOE R&D budget.
+
 
 --
 
