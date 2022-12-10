@@ -11,7 +11,7 @@ output:
 
 ## Project thoughts
 
-For my final project, I am hoping to examine budgetary data from the Department of Energy over the last several decades (1978--). As part of my senior thesis in government, I am looking into how federal climate and energy policy has shaped research priorities at national laboratories of the DOE, particularly in renewable energy, and I would like to bolster this study with an investigation into the DOE's budgetary history. More specifically, I would like to gain a deeper understanding of the relationship between DOE budget requests to Congress and the ultimate appropriations made, the breakdown of this budget by sector and research area, as well as what policy factors and/or energy economics may be related to this budgetary information. 
+For my final project, I am hoping to examine budgetary data from the Department of Energy (DOE) over the last several decades (1978--). As part of my senior thesis in government, I am looking into how federal climate and energy policy has shaped research priorities at national laboratories of the DOE, particularly in renewable energy, and I would like to bolster this study with an investigation into the DOE's budgetary history. More specifically, I would like to gain a deeper understanding of the relationship between DOE budget requests to Congress and the ultimate appropriations made, the breakdown of this budget by sector and research area, as well as what policy factors and/or energy economics may be related to this budgetary information. 
 
 To parse this potential relationship, I will be drawing upon data from the following resources: 
 
@@ -19,7 +19,7 @@ To parse this potential relationship, I will be drawing upon data from the follo
 
 2. [Party Government Since 1957] (https://history.house.gov/Institution/Presidents-Coinciding/Party-Government/): This data encompasses the list of past United States Presidents, Congressional party majorities, and a designation of whether each Congress consisted of Divided or Unified Government. I have cleaned the data manually to distill this information to align with each of my individual fiscal years of interest. 
 
-Does Congress's annual appropriation of funding to the United States Department of Energy (DOE) (dependent variable #1) depend on the political party that is in power in Congress (independent variable #1) and/or the Presidency (independent variable #2)? More specifically, is Congressional appropriation of funding larger when Democrats control Congress and/or the Presidency, compared to when Republicans are the majority party? In addition, upon the appropriation of this funding, does the partisan affiliation of the majority party in Congress and/or the party that holds the Presidency also influence if the portion of the DOE's budget is allocated toward renewable and clean energy projects (dependent variable #2)? My hypothesis is that both the Congressional appropriation of funding to the DOE would be larger when Democrats control Congress and/or the Presidency, as in the United States, the Democratic Party has become associated with policies entailing a larger role for government, while the Republican Party favors less government involvement. Historically, Democrats (particularly since the term of President Jimmy Carter) have been more likely to support increased funding for national governmental agencies, while Republicans oppose this (especially beginning during President Ronald Reagan's term). As such, my explanatory variable of U.S. political leaders' (that is Congressional officials, representing the legislative branch, and the President, who helms the executive branch) partisan association is readily measured with their official party identification. I will code datasets #1 and #2 so that each President is assigned to a unique value that represents one of Democrats, Republicans, and Independent/Other parties, and I will apply this numerical code designation to each Congress as well. My outcome variable of interest is twofold: (1) the financial dollar amount of Congress's final budgetary appropriation to the DOE during each fiscal year, and (2) the breakdown of this overall budget by research sector. The measurements for these dependent variables are recorded every year based on the DOE's annual fiscal reports, obtained for the years 1978-2022. If I see that (1) the Congressional appropriation to the DOE and (2) the proportion of this budget that is set aside for clean energy and renewables energy research is larger during periods of Democratic Congressional/Presidential control, this would lend support for my hypothesis. Conversely, if I note that (1) the Congressional appropriation to the DOE and (2) the proportion of this amount allocated to clean and renewable energy research is smaller or equal in the case of Democratic and Republican control, this would support rejecting my hypothesis. Running a regression of (1) Congressional appropriations to the DOE and (2) proportion of (1) that is assigned to clean or renewable energy on the variables for partisan control, a positive, significant coefficient would provide support for my hypothesis.
+Does Congress's annual appropriation of funding to the United States Department of Energy (DOE) (dependent variable #1) depend on the political party that is in power in Congress (independent variable #1) and/or the Presidency (independent variable #2)? More specifically, is Congressional appropriation of funding larger when Democrats control Congress and/or the Presidency, compared to when Republicans are the majority party? In addition, upon the appropriation of this funding, does the partisan affiliation of the majority party in Congress and/or the party that holds the Presidency also influence if the portion of the DOE's budget is allocated toward renewable and clean energy projects (dependent variable #2)? My hypothesis is that both the Congressional appropriation of funding to the DOE would be larger when Democrats control Congress and/or the Presidency. In the United States, the Democratic Party has become associated with policies entailing a larger role for government, while the Republican Party tends to favor less government involvement. Historically, Democrats (particularly since the term of President Jimmy Carter) have been more likely to support increased funding for national governmental agencies, while Republicans oppose this (especially beginning during President Ronald Reagan's term). As such, my explanatory variable of U.S. political leaders' (that is Congressional officials, representing the legislative branch, and the President, who helms the executive branch) partisan association is readily measured with their official party identification. I will code datasets #1 and #2 so that each President is assigned to a unique value that represents one of Democrats, Republicans, and Independent/Other parties, and I will apply this numerical code designation to each Congress as well. My outcome variable of interest is twofold: (1) the financial dollar amount of Congress's final budgetary appropriation to the DOE during each fiscal year, and (2) the breakdown of this overall budget by research sector. The measurements for these dependent variables are recorded every year based on the DOE's annual fiscal reports, obtained for the years 1978-2022. If I see that (1) the Congressional appropriation to the DOE and (2) the proportion of this budget that is set aside for clean energy and renewables energy research is larger during periods of Democratic Congressional/Presidential control, this would lend support for my hypothesis. Conversely, if I note that (1) the Congressional appropriation to the DOE and (2) the proportion of this amount allocated to clean and renewable energy research is smaller or equal in the case of Democratic and Republican control, this would support rejecting my hypothesis. Running a regression of (1) Congressional appropriations to the DOE and (2) proportion of (1) that is assigned to clean or renewable energy on the variables for partisan control, a positive, significant coefficient would provide support for my hypothesis.
 
 ```{r}
 library(tidyverse)
@@ -30,11 +30,11 @@ library(ggplot2)
 dataset <- read_csv("gov50milestone3.csv")
 dataset
 ```
-```{r}
+```{r totaldoernd}
 dataset_graph1 <- dataset |>
   ggplot(mapping = aes(x = fiscal_year, 
                        y = total_doe_rnd), width = 25, height = 20) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   geom_col(aes(fill = president_party)) +
   scale_fill_manual(values = c(Democrat = "blue", 
                                Republican = "red")) +
@@ -47,7 +47,6 @@ dataset_graph1 <- dataset |>
        The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
        fill = "President Party") 
-  
 dataset_graph1
 
 # xlim = c(1978, 2022))
@@ -55,14 +54,14 @@ dataset_graph1
 # Future ideas: how track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C
 ```
 
-```{r}
+```{r prev-as-binary}
 set.seed(02138)
 library(infer)
 
 dataset_binary <- read_csv("gov50milestone4binary.csv")
 dataset_binary
 ```
-```{r}
+```{r hypothesis-test}
 dataset_mut <- dataset_binary |>
   mutate(president_party_binary = if_else(president_party == 1, "Democrat", "Republican")) 
 
@@ -91,6 +90,24 @@ dist
 ```
 
 The observed difference between the mean total DOE R&D budgets between all Democratic presidencies and Republican presidencies is 790.15 dollars (D-R), and the corresponding p-value is 0.214. Considering an $/alpha$ of 0.05, since p > 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the DOE R&D budget.
+
+```{r multi-variable-regression}
+
+
+multivarreg <- lm(total_doe_rnd ~ president_party_binary + x2 + x3, data = dataset_mut)
+multivarreg
+
+# would add variables like overall Cong budget/spending; price of gas; inflation; global energy spending; investments in DARPA-E and DARPA-C (Cong by Pres party, mixed, or not)
+#* overall Cong spending 
+##* vs. 1 
+#* 0 chambers = 0
+#* DOE spending / total spending (% of total budget) ** GOOD ** 
+#* DOE vs. DOD spending 
+
+# controlling for GDP yearly growth 
+
+#fit <- lm(perc_lib ~ prop + factor(year) + log_pop + log_pop_denc + avg_home_val_log, data = wind)
+```
 
 
 --
