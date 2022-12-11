@@ -7,15 +7,13 @@ output:
     self_contained: false
 ---
 
-
-
 ## Project thoughts
 
 For my final project, I am hoping to examine budgetary data from the Department of Energy (DOE) over the last several decades (1978--). As part of my senior thesis in government, I am looking into how federal climate and energy policy has shaped research priorities at national laboratories of the DOE, particularly in renewable energy, and I would like to bolster this study with an investigation into the DOE's budgetary history. More specifically, I would like to gain a deeper understanding of the relationship between DOE budget requests to Congress and the ultimate appropriations made, the breakdown of this budget by sector and research area, as well as what policy factors and/or energy economics may be related to this budgetary information. 
 
 To parse this potential relationship, I will be drawing upon data from the following resources: 
 
-1. [DOE Budget Authority for Energy Research, Development, and Demonstration Database] (https://www.belfercenter.org/publication/database-us-department-energy-doe-budgets-energy-research-development-demonstration-1): This website contains an Excel file containing tables of appropriations by Congress to the Department of Energy from fiscal year 1978-2022. These numbers include the budget requests by the DOE to Congress each year, along with the ultimate appropriation amount from Congress, as well as the breakdowns of the agency's budget by research areas (i.e., fossil fuels, energy efficiency, hydrogen, renewable energy, nuclear energy). I will need to convert this data into csv form.
+1. [DOE Budget Authority for Energy Research, Development, and Demonstration Database] (https://www.belfercenter.org/publication/database-us-department-energy-doe-budgets-energy-research-development-demonstration-1): This website contains an Excel file containing tables of appropriations by Congress to the Department of Energy for R&D purposes from fiscal year 1978-2022. These numbers include the budget requests by the DOE to Congress each year, along with the ultimate appropriation amount from Congress, as well as the breakdowns of the agency's budget by research areas (i.e., fossil fuels, energy efficiency, hydrogen, renewable energy, nuclear energy). I will need to convert this data into csv form.
 
 2. [Party Government Since 1957] (https://history.house.gov/Institution/Presidents-Coinciding/Party-Government/): This data encompasses the list of past United States Presidents, Congressional party majorities, and a designation of whether each Congress consisted of Divided or Unified Government. I have cleaned the data manually to distill this information to align with each of my individual fiscal years of interest. 
 
@@ -39,7 +37,7 @@ dataset_graph1 <- dataset |>
   scale_fill_manual(values = c(Democrat = "blue", 
                                Republican = "red")) +
   labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests (2020$)",
+       y = "DOE Energy R&D FY Requests (million 2020$)",
        title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon, 
@@ -123,6 +121,12 @@ energy_consumption_usa_complete <- energy_consumption_usa |>
   filter(fiscal_year %in% c(1978:2021))
 energy_consumption_usa_complete
 
+# csv for divided vs. unified government
+divided_vs_unified <- read_csv("code_for_unified_vs_divided_gov.csv", show_col_types = "FALSE")
+divided_vs_unified_complete <- divided_vs_unified |>
+  filter(fiscal_year %in% c(1978:2021)) 
+divided_vs_unified_complete 
+
 ## JOINING DATASETS
 # 1 additional variable 
 president_party_plus_1var <- inner_join(x = no_arpa_complete, y = congressional_spending_complete, by = "fiscal_year")
@@ -148,13 +152,19 @@ president_party_plus_4var <- inner_join(x = president_party_plus_3var, y = energ
 multi_var_selected <- president_party_plus_4var |>
   inner_join(energy_consumption_usa) |>
   select(fiscal_year, total_doe_rnd, president_party, outlays, outlays_frac_of_gdp, crude_oil_prices, inflation, energy_consump)
+
+# 5 additional variables
+president_party_plus_5var <- inner_join(x = president_party_plus_4var, y = divided_vs_unified_complete, by = "fiscal_year") 
+multi_var_selected <- president_party_plus_5var |>
+  inner_join(divided_vs_unified_complete) |>
+  select(fiscal_year, total_doe_rnd, president_party, outlays, outlays_frac_of_gdp, crude_oil_prices, inflation, energy_consump, divided_vs_unified)
 ```
 
 ## REGRESSION
 ```{r regression}
 library(modelsummary)
 
-multi_var_reg <- lm(total_doe_rnd ~ president_party + outlays + outlays_frac_of_gdp + crude_oil_prices + inflation + energy_consump, data = multi_var_selected)
+multi_var_reg <- lm(total_doe_rnd ~ president_party + outlays + outlays_frac_of_gdp + crude_oil_prices + inflation + energy_consump + divided_vs_unified, data = multi_var_selected)
 
 modelsummary::modelsummary(multi_var_reg,
                            statistic = c("s.e. = {std.error}",
@@ -163,12 +173,21 @@ modelsummary::modelsummary(multi_var_reg,
 
 
 ## Future variables to consider
-# global energy consumption/spending; investments in DARPA-E and DARPA-C; Cong by Pres party, mixed, or not; GDP yearly growth; DoD spending; DOE spending out of total spending (% of total budget) 
-
-##* vs. 1 
-#* 0 chambers = 0
+# GLOBAL energy consumption/spending; investments in DARPA-E and DARPA-C; GDP yearly growth; DoD spending; DOE spending out of total spending (% of total budget) 
 
 ```
+
+The coefficient on `president_party` is approximately 1064, which implies that under Democratic presidents, the total DOE budget was about $1064 larger (in 2020 USD) compared to under Republican presidents. Given that the p-value of this coefficient is 0.010, which is less than an $\alpha = 0.05$, this coefficient is statistically significant. 
+
+The coefficient on `outlays` is 1.21, suggesting that for every `$`1B increase in the outlays (spending side of the budget), the total DOE budget allocated toward energy R&D increases by `$`1.21M. The p-value here is 0.007, which is less than $\alpha = 0.05$, so this coefficient is statistically significant. 
+
+The coefficient on `outlays_frac_of_gdp` is about -137, suggesting that for every 1% increase in outlay as a fraction of U.S. GDP, the total DOE budget for energy R&D decreases by -137 million dollars (2020 USD). However, the corresponding p-value here is 0.404, which is larger than $\alpha = 0.05$, rendering this coefficient not statistically significant. 
+
+Similarly, the coefficient on `crude_oil_prices` is approximately -0.78, indicating that for every $1 increase in the price of crude oil globally, measured per cubic meter (2021 USD), the total DOE budget for energy R&D decreases by 0.78 million dollars (2020 USD). Still, the corresponding p-value of 0.571 is larger than $\alpha = 0.05$, making this coefficient not statistically significant. 
+
+On the other hand, the coefficient on `inflation` is 621.16, showing that for every 1% increase in inflation (measured with regard to consumer prices) in the United States, the DOE budget for energy R&D increases by 621.16 million dollars (2020 USD). The corresponding p-value, <0.001, is very significant, as it is substantially smaller than $\alpha = 0.05$.
+
+Finally, the coefficient on `energy_consump` is -0.399, reflecting that for every one quadrillion BTU increase in energy consumption, the DOE budget for R&D decreases by 399,000 dollars (2020 USD). The p-value of 0.029 is less than an $\alpha = 0.05$, making this coefficient statistically significant. 
 
 --
 
@@ -189,5 +208,3 @@ TRAC data provides us with our outcome variable, the proportion of ICE detainer 
 --
 
 Does unified government enhance legislative productivity? In this study, I plan to examine the extent to which periods of unified government produce more landmark laws. I hypothesize that legislative productivity increases during periods of unified government in which one party controls both Houses of Congress and the presidency relative to periods of divided government. During periods of unified government, I expect that it is more likely for major bills to pass both Houses and gain the president’s signature. During periods of divided government, it is more difficult to reach a consensus around legislation that can pass each House and gain the president’s approval. My sample is comprised of each of the 79th (1945-1946) through 103rd (1993-1994) Congresses. My unit of analysis is a Congress (e.g., the 88th Congress). The explanatory variable of interest is whether there is unified government (both Houses and the presidency are controlled by the same party) or divided government. The variable is coded =1 for unified government and =0 for divided government. My outcome variable is the count of landmark pieces of legislation passed in a given Congress. For instance, if the variable were coded =11, it would mean that 11 pieces of landmark legislation were signed into law in that Congress. This variable is measured from David Mayhew’s data set on landmark legislation and relies on Mayhew’s expert knowledge to classify legislation as “landmark.” If I observe greater landmark legislative productivity under unified government relative to divided government, this would provide support for my hypothesis. If, on the other hand, I observe less productivity or the same level of productivity under unified government, this would provide evidence against my hypothesis. When I run my regression of the count of landmark legislation on the unified government indicator variable, a positive, significant coefficient would indicate support for my hypothesis.
-
-
