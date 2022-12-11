@@ -91,24 +91,84 @@ dist
 
 The observed difference between the mean total DOE R&D budgets between all Democratic presidencies and Republican presidencies is 790.15 dollars (D-R), and the corresponding p-value is 0.214. Considering an $/alpha$ of 0.05, since p > 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the DOE R&D budget.
 
+## JOINS 
 ```{r multi-variable-regression}
+# read in previous dataset, but for sake of merging fiscal years during `join()`, take out the 2009 ARPA data point
+no_arpa <- read_csv("gov50milestone4binary_no_arpa.csv")
+no_arpa_complete <- no_arpa |>
+  filter(fiscal_year %in% c(1978:2021))
+no_arpa_complete
 
+# csv for Congressional spending
+congressional_spending <- read_csv("congressional_spending.csv") 
+congressional_spending_complete <- congressional_spending |>
+  filter(fiscal_year %in% c(1978:2021))
+congressional_spending_complete
 
-multivarreg <- lm(total_doe_rnd ~ president_party_binary + x2 + x3, data = dataset_mut)
-multivarreg
+# csv for crude oil prices
+crude_oil_prices <- read_csv("crude_oil_prices.csv")
+crude_oil_prices_complete <- crude_oil_prices |>
+  filter(fiscal_year %in% c(1978:2021))
+crude_oil_prices_complete
 
-# would add variables like overall Cong budget/spending; price of gas; inflation; global energy spending; investments in DARPA-E and DARPA-C (Cong by Pres party, mixed, or not)
-#* overall Cong spending 
-##* vs. 1 
-#* 0 chambers = 0
-#* DOE spending / total spending (% of total budget) ** GOOD ** 
-#* DOE vs. DOD spending 
+# csv for inflation
+inflation <- read_csv("inflation.csv")
+inflation_complete <- inflation |>
+  filter(fiscal_year %in% c(1978:2021)) 
+inflation_complete
+ 
+# csv for energy consumption
+energy_consumption_usa <- read_csv("energy_consumption_usa.csv", show_col_types = "FALSE")
+energy_consumption_usa_complete <- energy_consumption_usa |>
+  filter(fiscal_year %in% c(1978:2021))
+energy_consumption_usa_complete
 
-# controlling for GDP yearly growth 
+## JOINING DATASETS
+# 1 additional variable 
+president_party_plus_1var <- inner_join(x = no_arpa_complete, y = congressional_spending_complete, by = "fiscal_year")
+# president party along with 1) congressional spending outlays and 2) outlays as fraction of GDP
+president_party_plus_1var |>
+  inner_join(congressional_spending_complete) |>
+  select(fiscal_year, total_doe_rnd, president_party, outlays, outlays_frac_of_gdp)
 
-#fit <- lm(perc_lib ~ prop + factor(year) + log_pop + log_pop_denc + avg_home_val_log, data = wind)
+# 2 additional variables
+president_party_plus_2var <- inner_join(x = president_party_plus_1var, y = crude_oil_prices_complete, by = "fiscal_year") 
+president_party_plus_2var |>
+  inner_join(crude_oil_prices_complete) |>
+  select(fiscal_year, total_doe_rnd, president_party, outlays, outlays_frac_of_gdp, crude_oil_prices)
+
+# 3 additional variables
+president_party_plus_3var <- inner_join(x = president_party_plus_2var, y = inflation_complete, by = "fiscal_year") 
+president_party_plus_3var |>
+  inner_join(inflation_complete) |>
+  select(fiscal_year, total_doe_rnd, president_party, outlays, outlays_frac_of_gdp, crude_oil_prices, inflation)
+
+# 4 additional variables
+president_party_plus_4var <- inner_join(x = president_party_plus_3var, y = energy_consumption_usa_complete, by = "fiscal_year") 
+multi_var_selected <- president_party_plus_4var |>
+  inner_join(energy_consumption_usa) |>
+  select(fiscal_year, total_doe_rnd, president_party, outlays, outlays_frac_of_gdp, crude_oil_prices, inflation, energy_consump)
 ```
 
+## REGRESSION
+```{r regression}
+library(modelsummary)
+
+multi_var_reg <- lm(total_doe_rnd ~ president_party + outlays + outlays_frac_of_gdp + crude_oil_prices + inflation + energy_consump, data = multi_var_selected)
+
+modelsummary::modelsummary(multi_var_reg,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
+
+
+## Future variables to consider
+# global energy consumption/spending; investments in DARPA-E and DARPA-C; Cong by Pres party, mixed, or not; GDP yearly growth; DoD spending; DOE spending out of total spending (% of total budget) 
+
+##* vs. 1 
+#* 0 chambers = 0
+
+```
 
 --
 
