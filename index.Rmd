@@ -33,11 +33,11 @@ To parse these potential relationships, I drew upon data from the following reso
 
 # Dependent variable
 
-1. [DOE Budget Authority for Energy Research, Development, and Demonstration Database] (https://www.belfercenter.org/publication/database-us-department-energy-doe-budgets-energy-research-development-demonstration-1): This website contains an Excel file with appropriations by Congress to the DOE for R&D purposes from fiscal year 1978 through 2022, as well as the budgetary request amount for FY 2023. These numbers include the ultimate appropriation amount from Congress, as well as the breakdowns of the agency's budget by research area (i.e., fossil fuels, energy efficiency, hydrogen, renewable energy, and nuclear energy). For my analysis, I converted this data, collected from official governmental reports, into CSV form, and mainly sourced numbers from the total energy R&D budget and renewable energy R&D budget sections.
+1. [DOE Budget Authority for Energy Research, Development, and Demonstration (ERD3) Database] (https://www.belfercenter.org/publication/database-us-department-energy-doe-budgets-energy-research-development-demonstration-1): This website contains an Excel file with appropriations by Congress to the DOE for R&D purposes from fiscal year 1978 through 2022, as well as the budgetary request amount for FY 2023. These numbers include the ultimate appropriation amount from Congress, as well as the breakdowns of the agency's budget by research area (i.e., fossil fuels, energy efficiency, hydrogen, renewable energy, and nuclear energy). For my analysis, I converted this data, collected from official governmental reports, into CSV form, and mainly sourced numbers from the total energy R&D budget and renewable energy R&D budget sections.
 
 # Independent variables 
 
-2. [Party Government Since 1957] (https://history.house.gov/Institution/Presidents-Coinciding/Party-Government/): This data encompasses the list of past United States Presidents, Congressional party majorities, and a designation of whether each Congress consisted of divided or unified Government. I have cleaned the data manually to align relevant points with each of my individual fiscal years of interest. I have also manually coded a variable to reflect the party composition of the House of Representatives, Senate, and President together, with "3" denoting a Democratic trifecta, "2" denoting two entities under Democratic control and one under Republican control, "1" denoting one entity under Democratic control and two under Republican control, and "0" denoting a Republican trifecta.
+2. [Party Government Since 1957] (https://history.house.gov/Institution/Presidents-Coinciding/Party-Government/): This data encompasses the list of past United States Presidents, Congressional party majorities, and a designation of whether each Congress consisted of divided or unified Government. This data is relevant given that the President's agenda often influences national priorities, particularly through shaping the budgets made available for governmental agencies. Meanwhile, Congress is the entity with the authority to actually authorize and authorize budgetary amounts. I have manually cleaned this data to align relevant points with each of my individual fiscal years of interest. I have also manually coded a variable to reflect the party composition of the House of Representatives, Senate, and President together, with "3" denoting a Democratic trifecta, "2" denoting two entities under Democratic control and one under Republican control, "1" denoting one entity under Democratic control and two under Republican control, and "0" denoting a Republican trifecta.
 
 3. [Congressional Budget Office: Historical Budget Data] (https://www.cbo.gov/data/budget-economic-data#2): This webpage lists budgetary and economic data to accompany the CBO's major reports. Here, the spreadsheet for data on CBO revenues, outlays, and deficit or surplus status from 1962 to the most recent fiscal year completed are available. In this analysis, given my interest in comparing the total DOE R&D budget with overall Congressional spending, I focused on (1) outlay amounts and (2) outlay as a fraction of total GDP as independent variables.
 
@@ -53,7 +53,7 @@ This research design is longitudinal and observational. No experiments are carri
 
 # Summary of the Dependent Variable
 
-Below is a broad overview of the total DOE budget directed toward Energy R&D, displayed in millions of 2020$, over the agency's 45-year history. The x-axis begins at the year 1978, which was when the DOE was established, and continues up until the most recent complete fiscal year, 2022. 
+Below is a broad overview of the total DOE budget directed toward Energy R&D, displayed in millions of 2020$, over the agency's 45-year history. The x-axis begins at the year 1978, which was when the DOE was established, and continues up until the most recent complete fiscal year, 2022. The datapoint entitled "2009 ARPA" reflects funding for ERD3 from the American Recovery and Reinvestment Act (ARPA) of 2009.
 
 ```{r setup}
 library(tidyverse)
@@ -65,7 +65,7 @@ doe_rnd_total <- read_csv("gov50milestone3.csv")
 doe_rnd_total
 ```
 
-```{r totaldoernd-basic}
+```{r total-doe-rnd_basic}
 # Total DOE R&D amount
 total_doe_rnd_basic <- doe_rnd_total |>
   ggplot(mapping = aes(x = fiscal_year, y = total_doe_rnd)) +
@@ -83,13 +83,13 @@ total_doe_rnd_basic
 ```
 *Figure 1*: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022.
 
-Next is the same graphic but with the proportion of the DOE budget directed for R&D in renewable energy highlighted in green. Visually, the amount of money set aside for the DOE's energy efforts in renewable energy R&D seems to track consistently with the overall DOE R&D budget over time; both curves share a similar shape. 
+Next is the same graphic but with the amount of the DOE budget directed toward R&D in renewable energy highlighted in green. Visually, the amount of money set aside for the DOE's energy efforts in renewable energy R&D seems to track relatively consistently with the overall DOE R&D budget over time; both curves share similar trends. 
 
-```{r doernd_for_renewables}
+```{r doe-rnd_renewables}
 re <- read_csv("re_rnd.csv")
 
 # DOE R&D with breakdown for renewable energy
-total_doe_rnd_with_re_highlight <- re |>
+total_doe_rnd_re_highlight <- re |>
   filter(fiscal_year %in% c(1978:2022)) |>
   ggplot(mapping = aes(x = fiscal_year, y)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
@@ -100,21 +100,31 @@ total_doe_rnd_with_re_highlight <- re |>
        y = "DOE Energy R&D FY Requests: Total and Renewable Energy (million 2020$)",
        title = "Total and Renewable Energy DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
-       Gallagher, K.S. and L.D. Anadon, a
+       Gallagher, K.S. and L.D. Anadon,
        DOE Budget Authority for Energy Research, Development, and Demonstration Database,' 
        The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.")
-total_doe_rnd_with_re_highlight
+total_doe_rnd_re_highlight
 ```
 *Figure 2*: Total DOE Energy R&D (gray) and Renewable Energy R&D (green) Investments by Fiscal Year, 1978--2022.
 
 ## RESULTS 
 
-# Graph of the Main Relationship
+# Graphs of the Main Relationships
 
-The main relationship of interest parses how the DOE's Energy R&D budget over time (dependent variable) is associated to the party of the presidency (independent variable). To gauge this connection, Figure 1 has been color-coded based on the party of the President, with blue indicating a Democratic president during that fiscal year, and red for a Republican one.
+In this study, there are several relationships of analysis:
 
-```{r totaldoernd-by-pres}
+1. How is the DOE's total R&D budget (dependent variable #1) associated with the party of the presidency (independent variable #1)?
+
+2. How is the DOE's total R&D budget (dependent variable #1) associated with the status of Congress (i.e., both, one, or none of the chambers belong to the President's party) (independent variable #2)?
+
+3. How is the DOE's renewable energy R&D budget (dependent variable #2) associated with the party of the presidency (independent variable #1)?
+
+4. How is the DOE's renewable energy R&D budget (dependent variable #2) associated with the status of Congress (i.e., both, one, or none of the chambers belong to the President's party) (independent variable #2)?
+
+First, to answer question #1, Figure 1 has been color-coded based on the party of the President, with blue indicating a Democratic president during that fiscal year, and red for a Republican one.
+
+```{r total-doe-rnd_by-pres}
 # Total DOE R&D, colored by President Party
 total_doe_rnd_by_pres <- dataset |>
   ggplot(mapping = aes(x = fiscal_year, 
@@ -133,14 +143,12 @@ total_doe_rnd_by_pres <- dataset |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
        fill = "President Party") 
 total_doe_rnd_by_pres
-
-# Future ideas: how track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C
 ```
 *Figure 3*: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022, color-coded based on the party of the President in power at the time.
 
-Applying the same presidential party-based color coding to Figure 2 depicts the renewable energy R&D budget of the DOE as colored based on the party of the President in control. 
+Applying the same presidential party-based color coding scheme to Figure 2 depicts the renewable energy R&D budget of the DOE based on the party of the President in control. 
 
-```{r totaldoernd-with-re}
+```{r totaldoernd_with-re}
 # DOE R&D with breakdown for renewable energy, colored by President Party
 total_doe_rnd_with_re_presparty <- re |>
   filter(fiscal_year %in% c(1978:2022)) |>
@@ -155,7 +163,7 @@ total_doe_rnd_with_re_presparty <- re |>
        y = "DOE Energy R&D FY Requests: Total and Renewable Energy (million 2020$)",
        title = "Total and Renewable Energy DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
-       Gallagher, K.S. and L.D. Anadon, a
+       Gallagher, K.S. and L.D. Anadon, 
        DOE Budget Authority for Energy Research, Development, and Demonstration Database,' 
        The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.", fill = "President Party")
@@ -163,9 +171,73 @@ total_doe_rnd_with_re_presparty
 ```
 *Figure 4*: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the party of the President in power at the time.
 
+Rather than solely applying color codes based on the party of the president, the DOE's overall budget for energy R&D can also be analyzed with respect to the partisan composition of the president as well as both chambers of Congress. In the chart below, a Democratic trifecta (Democratic president, Senate, and House) is colored in dark blue, a 2:1 Democratic composition (out of the president, Senate, and House, two entities are controlled by Democrats) in light blue, a 2:1 Republican composition in light red, and a Republican trifecta in dark red. 
+
+```{r total-doe-rnd_by-pres-and-cong}
+# Total DOE R&D, colored by Congressional and Presidential control
+
+divided_vs_unified_data <- read_csv("code_for_unified_vs_divided_gov.csv", show_col_types = "FALSE")
+divided_vs_unified_data
+
+total_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
+  ggplot(mapping = aes(x = as.double(fiscal_year), 
+                       y = as.double(total_doe_rnd))) +
+  geom_col(aes(fill = as.character(divided_vs_unified))) +
+  scale_fill_manual(values = c("3" = "blue", 
+                               "2" = "cornflowerblue",
+                               "1" = "indianred",
+                               "0" = "red"),
+                    labels = c("3 D / 0 R", 
+                               "2 D / 1 R",
+                               "1 D / 2 R",
+                               "0 D / 3 R")) +
+  labs(x = "Fiscal Year", 
+       y = "DOE Energy R&D FY Requests (million 2020$)",
+       title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
+       caption = "SOURCE: 
+       Gallagher, K.S. and L.D. Anadon, 
+       DOE Budget Authority for Energy Research, Development, and Demonstration Database,' 
+       The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
+       and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
+       fill = "Presidential and Congressional Control")
+total_doe_rnd_by_pres_and_cong
+```
+*Figure 5*: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
+
+In a similar manner, the previous analysis can also be executed for the DOE's spending in renewable energy R&D.  
+
+```{r re-doe-rnd_by-pres-and-cong}
+# Renewable energy DOE R&D, colored by Congressional and Presidential control
+
+re_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
+  ggplot(mapping = aes(x = as.double(fiscal_year), y)) +
+  geom_col(data = divided_vs_unified_data, mapping = aes(y = as.double(total_doe_rnd))) +
+  geom_col(data = divided_vs_unified_data, mapping = aes(y = as.double(re_rnd), fill = as.character(divided_vs_unified))) +
+  scale_fill_manual(values = c("3" = "blue", 
+                               "2" = "cornflowerblue",
+                               "1" = "indianred",
+                               "0" = "red"),
+                    labels = c("3 D / 0 R", 
+                               "2 D / 1 R",
+                               "1 D / 2 R",
+                               "0 D / 3 R")) +
+  labs(x = "Fiscal Year", 
+       y = "DOE Energy R&D FY Requests (million 2020$)",
+       title = "Total and Renewable Energy DOE R&D Investments by Fiscal Year, 1978-2022",
+       caption = "SOURCE: 
+       Gallagher, K.S. and L.D. Anadon, 
+       DOE Budget Authority for Energy Research, Development, and Demonstration Database,' 
+       The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
+       and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
+       fill = "Presidential and Congressional Control")
+re_doe_rnd_by_pres_and_cong
+```
+
+*Figure 6*: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
+
 # Hypothesis Tests
 
-To corroborate the previous visually-presented graphic results, permutation hypothesis tests can also be conducted to gauge if there are any substantial differences in total DOE R&D budget and R&D budget allocated toward renewable energy based upon whether the President belonged to the Democratic or Republican Party.
+To corroborate the previous visually-presented graphic results, permutation hypothesis tests can also be conducted to gauge if there are any substantial differences in total DOE R&D budget and R&D budget allocated toward renewable energy based upon whether the President belonged to the Democratic or Republican Party, as well as incorporate the partisan makeup of Congress.
 
 ```{r prev-as-binary}
 set.seed(02138)
@@ -341,9 +413,11 @@ Finally, the coefficient on `energy_consump` is -0.399, reflecting that for ever
 ## CONCLUSION
  (4) a brief (one paragraph) concluding section that summarizes your results, assesses the extent to which you find support for your hypothesis, describes limitations of your analysis and threats to inference, and states how your analysis could be improved (e.g., improved data that would be useful to collect).
 
+* Figure 3: Overall, this graphic seems to indicate that the DOE's budget for total R&D was highest in its early years (i.e., FY 1978--1981), under President Jimmy Carter (D). Afterward, from FY1982 to 1998, through the presidencies of Ronald Reagan (R), George H.W. Bush (R), and Bill Clinton (D), the budget gradually decreased. However, by 1999, and traversing the leadership of Clinton (D), George W. Bush (R), Barack Obama (D), Donald Trump (R), and Joe Biden (D), the budget has gradually been increasing year-by-year.
 
+* Somewhat similar trends for Figure 4
 
-
+# Future ideas: how track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C
 
 
 --
