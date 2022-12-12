@@ -81,7 +81,7 @@ total_doe_rnd_basic <- doe_rnd_total |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.")
 total_doe_rnd_basic 
 
-ggsave("total_doe_rnd_basic.png", width = 40, height = 25)
+ggsave("total_doe_rnd_basic.png", width = 4, height = 3)
 ```
 ![](total_doe_rnd_basic.png)
 **Figure 1**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022.
