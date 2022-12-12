@@ -1841,8 +1841,8 @@ Explanatory: president_party_binary (factor)
 </div>
 <p><img src="index_files/figure-html5/hypothesis-test_doe-rnd_president-party-1.png" width="624" /></p>
 </div>
-<p><strong>Figure 7</strong>: Simulation-based null distribution for the difference in means of the total DOE energy R&amp;D budget under Democratic versus Republican presidencies. The bolded red vertical line shows the location of the observed difference between the mean total DOE R&amp;D budget between these two categories, which was 790.15 dollars (D-R).</p>
-<p>The observed difference between the mean total DOE R&amp;D budgets between all Democratic presidencies and Republican presidencies was 790.15 dollars (D-R), and the corresponding p-value was 0.176. Considering an <span class="math inline">\(/alpha\)</span> of 0.05, since p &gt; 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&amp;D budget.</p>
+<p><strong>Figure 7</strong>: Simulation-based null distribution for the difference in means of the total DOE energy R&amp;D budget under Democratic versus Republican presidencies. The bold red vertical line shows the location of the observed difference between the mean total DOE R&amp;D budget between these two categories, which was <code>$</code>790.15 million (D-R).</p>
+<p>The observed difference between the mean total DOE R&amp;D budgets between all Democratic presidencies and Republican presidencies was <code>$</code>790.15 million (D-R), and the corresponding p-value was 0.176. Considering an <span class="math inline">\(/alpha\)</span> of 0.05, since p &gt; 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&amp;D budget.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>base_diff_rernd_presparty</span> <span class='op'>&lt;-</span> <span class='va'>doe_rnd_total_presbinary_numbers</span> <span class='op'>|&gt;</span></span>
@@ -1882,8 +1882,8 @@ Explanatory: president_party_binary (factor)
 </div>
 <p><img src="index_files/figure-html5/hypothesis-test_re-rnd_president-party-1.png" width="624" /></p>
 </div>
-<p><strong>Figure 8</strong>: Simulation-based null distribution for the difference in means of the DOE energy R&amp;D budget spent on renewable energy under Democratic versus Republican presidencies. The bolded red vertical line at 405.42 dollars depicts the observed difference between the mean DOE R&amp;D budget for renewable energy between these two categories.</p>
-<p>The observed difference between the DOE R&amp;D budgets directed toward renewable energy between all Democratic presidencies and Republican presidencies was 405.42 dollars (D-R), and the corresponding p-value was 0.01. With an <span class="math inline">\(/alpha\)</span> of 0.05, since p &lt; 0.05, we have evidence to reject the null hypothesis of no effect. Said another way, there is a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&amp;D budget.</p>
+<p><strong>Figure 8</strong>: Simulation-based null distribution for the difference in means of the DOE energy R&amp;D budget spent on renewable energy under Democratic versus Republican presidencies. The bolded red vertical line at <code>$</code>405.42 million depicts the observed difference between the mean DOE R&amp;D budget for renewable energy between these two categories.</p>
+<p>The observed difference between the DOE R&amp;D budgets directed toward renewable energy between all Democratic presidencies and Republican presidencies was <code>$</code>405.42 million (D-R), and the corresponding p-value was 0.01. With an <span class="math inline">\(/alpha\)</span> of 0.05, since p &lt; 0.05, we have evidence to reject the null hypothesis of no effect. Said another way, there is a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&amp;D budget.</p>
 <h2 id="anova-testing">ANOVA testing</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1922,10 +1922,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <span><span class='co'># read in previous dataset, but for sake of merging fiscal years during `join()`, take out the 2009 ARPA data point</span></span>
 <span><span class='va'>no_arpa</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"gov50milestone4binary_no_arpa.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>no_arpa_complete</span> <span class='op'>&lt;-</span> <span class='va'>no_arpa</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>no_arpa_complete</span></span></code></pre>
 </div>
-<pre><code># A tibble: 44 × 255
+<pre><code># A tibble: 45 × 255
    fiscal_year total…¹ re_to…² presi…³ presi…⁴ house…⁵ senat…⁶ party…⁷
          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
  1        1978   9859.   2172. Carter        1 Democr… Democr… Unified
@@ -1938,7 +1938,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
  8        1985   3370.    561. Reagan        0 Democr… Republ… Divided
  9        1986   2972.    449. Reagan        0 Democr… Republ… Divided
 10        1987   2538.    378. Reagan        0 Democr… Republ… Divided
-# … with 34 more rows, 247 more variables: cong &lt;chr&gt;, ...10 &lt;lgl&gt;,
+# … with 35 more rows, 247 more variables: cong &lt;chr&gt;, ...10 &lt;lgl&gt;,
 #   ...11 &lt;dbl&gt;, ...12 &lt;lgl&gt;, ...13 &lt;lgl&gt;, ...14 &lt;lgl&gt;, ...15 &lt;lgl&gt;,
 #   ...16 &lt;lgl&gt;, ...17 &lt;lgl&gt;, ...18 &lt;lgl&gt;, ...19 &lt;lgl&gt;, ...20 &lt;lgl&gt;,
 #   ...21 &lt;lgl&gt;, ...22 &lt;lgl&gt;, ...23 &lt;lgl&gt;, ...24 &lt;lgl&gt;, ...25 &lt;lgl&gt;,
@@ -1949,7 +1949,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># csv for Congressional spending</span></span>
 <span><span class='va'>congressional_spending</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"congressional_spending.csv"</span><span class='op'>)</span> </span>
 <span><span class='va'>congressional_spending_complete</span> <span class='op'>&lt;-</span> <span class='va'>congressional_spending</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>congressional_spending_complete</span></span></code></pre>
 </div>
 <pre><code># A tibble: 44 × 6
@@ -1972,10 +1972,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># csv for crude oil prices</span></span>
 <span><span class='va'>crude_oil_prices</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"crude_oil_prices.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>crude_oil_prices_complete</span> <span class='op'>&lt;-</span> <span class='va'>crude_oil_prices</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>crude_oil_prices_complete</span></span></code></pre>
 </div>
-<pre><code># A tibble: 44 × 255
+<pre><code># A tibble: 45 × 255
    Entity Code      Year fisca…¹ crude…² ...6  ...7  ...8  ...9  ...10
    &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;
  1 World  OWID_WRL  1977    1978    87.5 NA    NA    NA    NA    NA   
@@ -1988,7 +1988,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
  8 World  OWID_WRL  1984    1985   181.  NA    NA    NA    NA    NA   
  9 World  OWID_WRL  1985    1986   173.  NA    NA    NA    NA    NA   
 10 World  OWID_WRL  1986    1987    90.8 NA    NA    NA    NA    NA   
-# … with 34 more rows, 245 more variables: ...11 &lt;lgl&gt;, ...12 &lt;lgl&gt;,
+# … with 35 more rows, 245 more variables: ...11 &lt;lgl&gt;, ...12 &lt;lgl&gt;,
 #   ...13 &lt;lgl&gt;, ...14 &lt;lgl&gt;, ...15 &lt;lgl&gt;, ...16 &lt;lgl&gt;, ...17 &lt;lgl&gt;,
 #   ...18 &lt;lgl&gt;, ...19 &lt;lgl&gt;, ...20 &lt;lgl&gt;, ...21 &lt;lgl&gt;, ...22 &lt;lgl&gt;,
 #   ...23 &lt;lgl&gt;, ...24 &lt;lgl&gt;, ...25 &lt;lgl&gt;, ...26 &lt;lgl&gt;, ...27 &lt;lgl&gt;,
@@ -1999,10 +1999,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># csv for inflation</span></span>
 <span><span class='va'>inflation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"inflation.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>inflation_complete</span> <span class='op'>&lt;-</span> <span class='va'>inflation</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span> </span>
 <span><span class='va'>inflation_complete</span></span></code></pre>
 </div>
-<pre><code># A tibble: 44 × 5
+<pre><code># A tibble: 45 × 5
     year fiscal_year inflation ...4  ...5 
    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt; &lt;lgl&gt;
  1  1977        1978      6.50 NA    NA   
@@ -2015,15 +2015,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
  8  1984        1985      4.30 NA    NA   
  9  1985        1986      3.55 NA    NA   
 10  1986        1987      1.90 NA    NA   
-# … with 34 more rows</code></pre>
+# … with 35 more rows</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># csv for energy consumption</span></span>
 <span><span class='va'>energy_consumption_usa</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"energy_consumption_usa.csv"</span>, show_col_types <span class='op'>=</span> <span class='st'>"FALSE"</span><span class='op'>)</span></span>
 <span><span class='va'>energy_consumption_usa_complete</span> <span class='op'>&lt;-</span> <span class='va'>energy_consumption_usa</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span></span>
 <span><span class='va'>energy_consumption_usa_complete</span></span></code></pre>
 </div>
-<pre><code># A tibble: 44 × 3
+<pre><code># A tibble: 45 × 3
     year fiscal_year energy_consump
    &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
  1  1977        1978         20896.
@@ -2036,15 +2036,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
  8  1984        1985         20236.
  9  1985        1986         20184.
 10  1986        1987         20372.
-# … with 34 more rows</code></pre>
+# … with 35 more rows</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># csv for divided vs. unified government</span></span>
 <span><span class='va'>divided_vs_unified</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"code_for_unified_vs_divided_gov.csv"</span>, show_col_types <span class='op'>=</span> <span class='st'>"FALSE"</span><span class='op'>)</span></span>
 <span><span class='va'>divided_vs_unified_complete</span> <span class='op'>&lt;-</span> <span class='va'>divided_vs_unified</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fiscal_year</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1978</span><span class='op'>:</span><span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span> </span>
 <span><span class='va'>divided_vs_unified_complete</span> </span></code></pre>
 </div>
-<pre><code># A tibble: 44 × 10
+<pre><code># A tibble: 45 × 10
    fiscal_year total_…¹ re_rnd Presi…² Presi…³ House…⁴ Senat…⁵ Party…⁶
    &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
  1 1978        9859.26… 2172.… Carter  Democr… Democr… Democr… Unified
@@ -2057,7 +2057,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
  8 1985        3370.34… 560.9… Reagan  Republ… Democr… Republ… Divided
  9 1986        2972.37… 448.5… Reagan  Republ… Democr… Republ… Divided
 10 1987        2538.03… 377.7… Reagan  Republ… Democr… Republ… Divided
-# … with 34 more rows, 2 more variables: `Congress #` &lt;chr&gt;,
+# … with 35 more rows, 2 more variables: `Congress #` &lt;chr&gt;,
 #   divided_vs_unified &lt;dbl&gt;, and abbreviated variable names
 #   ¹​total_doe_rnd, ²​President, ³​`President Party`,
 #   ⁴​`House Majority`, ⁵​`Senate Majority`, ⁶​`Party Government`</code></pre>
@@ -2172,10 +2172,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <span><span class='va'>president_party_plus_5var</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>president_party_plus_4var</span>, </span>
 <span>                                        y <span class='op'>=</span> <span class='va'>divided_vs_unified_complete_fixed</span>, </span>
 <span>                                        by <span class='op'>=</span> <span class='st'>"fiscal_year"</span><span class='op'>)</span> </span>
-<span><span class='va'>multi_var_selected</span> <span class='op'>&lt;-</span> <span class='va'>president_party_plus_5var</span> <span class='op'>|&gt;</span></span>
+<span><span class='va'>multi_var_selected_doe_rnd</span> <span class='op'>&lt;-</span> <span class='va'>president_party_plus_5var</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>divided_vs_unified_complete_fixed</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>fiscal_year</span>, <span class='va'>total_doe_rnd</span>, <span class='va'>president_party</span>, <span class='va'>outlays</span>, <span class='va'>outlays_frac_of_gdp</span>, <span class='va'>crude_oil_prices</span>, <span class='va'>inflation</span>, <span class='va'>energy_consump</span>, <span class='va'>divided_vs_unified</span><span class='op'>)</span></span>
-<span><span class='va'>multi_var_selected</span></span></code></pre>
+<span><span class='va'>multi_var_selected_doe_rnd</span></span></code></pre>
 </div>
 <pre><code># A tibble: 44 × 9
    fiscal_year total…¹ presi…² outlays outla…³ crude…⁴ infla…⁵ energ…⁶
@@ -2197,13 +2197,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <h2 id="output-for-the-main-regression">Output for the Main Regression</h2>
 <h1 id="regression">REGRESSION</h1>
+<h2 id="total-doe-spending">Total DOE Spending</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://vincentarelbundock.github.io/modelsummary/'>modelsummary</a></span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>multi_var_reg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>total_doe_rnd</span> <span class='op'>~</span> <span class='va'>president_party</span> <span class='op'>+</span> <span class='va'>outlays</span> <span class='op'>+</span> <span class='va'>outlays_frac_of_gdp</span> <span class='op'>+</span> <span class='va'>crude_oil_prices</span> <span class='op'>+</span> <span class='va'>inflation</span> <span class='op'>+</span> <span class='va'>energy_consump</span> <span class='op'>+</span> <span class='va'>divided_vs_unified</span>, data <span class='op'>=</span> <span class='va'>multi_var_selected</span><span class='op'>)</span></span>
+<span><span class='va'>multi_var_reg_total_doe_rnd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>total_doe_rnd</span> <span class='op'>~</span> <span class='va'>president_party</span> <span class='op'>+</span> <span class='va'>outlays</span> <span class='op'>+</span> <span class='va'>outlays_frac_of_gdp</span> <span class='op'>+</span> <span class='va'>crude_oil_prices</span> <span class='op'>+</span> <span class='va'>inflation</span> <span class='op'>+</span> <span class='va'>energy_consump</span> <span class='op'>+</span> <span class='va'>divided_vs_unified</span>, data <span class='op'>=</span> <span class='va'>multi_var_selected_doe_rnd</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>multi_var_reg</span>,</span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>multi_var_reg_total_doe_rnd</span>,</span>
 <span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
 <span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
 <span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
@@ -2421,32 +2422,289 @@ R2 Adj.
 </tr>
 </tbody>
 </table>
+</div>
+<ul>
+<li><p>The coefficient on <code>president_party</code> is approximately 341.51, which implies that under Democratic presidents, the total DOE budget was about <code>$</code>341.51M larger (in 2020 USD) compared to under Republican presidents. Given that the p-value of this coefficient is 0.509, which is much larger than an <span class="math inline">\(\alpha = 0.05\)</span>, this coefficient is not statistically significant, corroborating the results from the hypothesis testing.</p></li>
+<li><p>The coefficient on <code>outlays</code> is 1.62, suggesting that for every <code>$</code>1B increase in the outlays (spending side of the budget), the total DOE budget allocated toward energy R&amp;D increases by <code>$</code>1.62M (2020 USD). The p-value here is 0.001, which is less than <span class="math inline">\(\alpha = 0.05\)</span>, so this coefficient is statistically significant.</p></li>
+<li><p>The coefficient on <code>outlays_frac_of_gdp</code> is about -323.31, suggesting that for every 1% increase in outlay as a fraction of U.S. GDP, the total DOE budget for energy R&amp;D decreases by <code>$</code>323M (2020 USD), perhaps pointing to other avenues of Congressional spending besides the DOE. The corresponding p-value here is 0.081, which is larger than <span class="math inline">\(\alpha = 0.05\)</span>, rendering this coefficient not statistically significant.</p></li>
+<li><p>Similarly, the coefficient on <code>crude_oil_prices</code> is approximately -1.74, indicating that for every <code>$</code>1 increase in the price of crude oil globally, measured per cubic meter (2021 USD), the total DOE budget for energy R&amp;D decreases by <code>$</code>780,000 (2020 USD). Still, the corresponding p-value of 0.220 is larger than <span class="math inline">\(\alpha = 0.05\)</span>, making this coefficient not statistically significant.</p></li>
+<li><p>On the other hand, the coefficient on <code>inflation</code> is 634.01, showing that for every 1% increase in inflation (measured with regard to consumer prices) in the United States, the DOE budget for energy R&amp;D increases by <code>$</code>621.16M (2020 USD). The corresponding p-value, &lt;0.001, is very significant, as it is substantially smaller than <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>Likewise, the coefficient on <code>energy_consump</code> is -0.447, reflecting that for every one quadrillion BTU increase in energy consumption, the DOE budget for R&amp;D decreases by <code>$</code>447,000 dollars (2020 USD). The p-value of 0.013 is less than an <span class="math inline">\(\alpha = 0.05\)</span>, making this coefficient statistically significant.</p></li>
+<li><p>Finally, the coefficient on <code>divided_vs_unified</code> is 591.66, indicating that for every one additional executive/Congressional entity that is Democratic (i.e., the Presidency switches from Republican to Democrat, or one of the chambers of Congress flips from red to blue), the DOE budget for R&amp;D increases by $591.66M (2020 USD). The associated p-value of 0.046 is below an <span class="math inline">\(\alpha = 0.05\)</span>, rendering this coefficient statistically significant.</p></li>
+</ul>
+<h2 id="doe-spending-in-renewable-energy">DOE Spending in Renewable Energy</h2>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## Future variables to consider</span></span>
-<span><span class='co'># GLOBAL energy consumption/spending; investments in DARPA-E and DARPA-C; GDP yearly growth; DoD spending; DOE spending out of total spending (% of total budget) </span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>re_rnd_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"re_rnd.csv"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>re_rnd_data</span></span></code></pre>
 </div>
+<pre><code># A tibble: 60 × 11
+   fiscal_year total_…¹ re_rnd Presi…² Presi…³ House…⁴ Senat…⁵ Party…⁶
+   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1 1978        9859.26… 2172.… Carter  Democr… Democr… Democr… Unified
+ 2 1979        9660.62… 2539.… Carter  Democr… Democr… Democr… Unified
+ 3 1980        9317.87… 2486.0 Carter  Democr… Democr… Democr… Unified
+ 4 1981        8587.04… 2209.… Carter  Democr… Democr… Democr… Unified
+ 5 1982        5505.53… 1001.… Reagan  Republ… Democr… Republ… Divided
+ 6 1983        4152.44… 723.5… Reagan  Republ… Democr… Republ… Divided
+ 7 1984        3853.49… 581.3… Reagan  Republ… Democr… Republ… Divided
+ 8 1985        3370.34… 560.9… Reagan  Republ… Democr… Republ… Divided
+ 9 1986        2972.37… 448.5… Reagan  Republ… Democr… Republ… Divided
+10 1987        2538.03… 377.7… Reagan  Republ… Democr… Republ… Divided
+# … with 50 more rows, 3 more variables: `Congress #` &lt;chr&gt;,
+#   divided_vs_unified &lt;dbl&gt;, president_party &lt;dbl&gt;, and abbreviated
+#   variable names ¹​total_doe_rnd, ²​President, ³​`President Party`,
+#   ⁴​`House Majority`, ⁵​`Senate Majority`, ⁶​`Party Government`</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>re_rnd_data</span> <span class='op'>&lt;-</span> <span class='va'>re_rnd_data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>fiscal_year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='va'>fiscal_year</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>president_party_plus_6var</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>president_party_plus_5var</span>, </span>
+<span>                                        y <span class='op'>=</span> <span class='va'>re_rnd_data</span>, </span>
+<span>                                        by <span class='op'>=</span> <span class='st'>"fiscal_year"</span><span class='op'>)</span></span>
+<span><span class='va'>multi_var_selected_re_rnd</span> <span class='op'>&lt;-</span> <span class='va'>president_party_plus_5var</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>re_rnd_data</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>fiscal_year</span>, <span class='va'>re_rnd</span>, <span class='va'>president_party</span>, <span class='va'>outlays</span>, <span class='va'>outlays_frac_of_gdp</span>, <span class='va'>crude_oil_prices</span>, <span class='va'>inflation</span>, <span class='va'>energy_consump</span>, <span class='va'>divided_vs_unified</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>multi_var_selected_re_rnd</span> <span class='op'>&lt;-</span> <span class='va'>multi_var_selected_re_rnd</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>re_rnd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='va'>re_rnd</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>multi_var_reg_doe_re_rnd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>re_rnd</span> <span class='op'>~</span> <span class='va'>president_party</span> <span class='op'>+</span> <span class='va'>outlays</span> <span class='op'>+</span> <span class='va'>outlays_frac_of_gdp</span> <span class='op'>+</span> <span class='va'>crude_oil_prices</span> <span class='op'>+</span> <span class='va'>inflation</span> <span class='op'>+</span> <span class='va'>energy_consump</span> <span class='op'>+</span> <span class='va'>divided_vs_unified</span>, data <span class='op'>=</span> <span class='va'>multi_var_selected_re_rnd</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>multi_var_reg_doe_re_rnd</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p>The coefficient on <code>president_party</code> is approximately 1064, which implies that under Democratic presidents, the total DOE budget was about $1064 larger (in 2020 USD) compared to under Republican presidents. Given that the p-value of this coefficient is 0.010, which is less than an <span class="math inline">\(\alpha = 0.05\)</span>, this coefficient is statistically significant.</p>
-<p>The coefficient on <code>outlays</code> is 1.21, suggesting that for every <code>$</code>1B increase in the outlays (spending side of the budget), the total DOE budget allocated toward energy R&amp;D increases by <code>$</code>1.21M. The p-value here is 0.007, which is less than <span class="math inline">\(\alpha = 0.05\)</span>, so this coefficient is statistically significant.</p>
-<p>The coefficient on <code>outlays_frac_of_gdp</code> is about -137, suggesting that for every 1% increase in outlay as a fraction of U.S. GDP, the total DOE budget for energy R&amp;D decreases by -137 million dollars (2020 USD). However, the corresponding p-value here is 0.404, which is larger than <span class="math inline">\(\alpha = 0.05\)</span>, rendering this coefficient not statistically significant.</p>
-<p>Similarly, the coefficient on <code>crude_oil_prices</code> is approximately -0.78, indicating that for every $1 increase in the price of crude oil globally, measured per cubic meter (2021 USD), the total DOE budget for energy R&amp;D decreases by 0.78 million dollars (2020 USD). Still, the corresponding p-value of 0.571 is larger than <span class="math inline">\(\alpha = 0.05\)</span>, making this coefficient not statistically significant.</p>
-<p>On the other hand, the coefficient on <code>inflation</code> is 621.16, showing that for every 1% increase in inflation (measured with regard to consumer prices) in the United States, the DOE budget for energy R&amp;D increases by 621.16 million dollars (2020 USD). The corresponding p-value, &lt;0.001, is very significant, as it is substantially smaller than <span class="math inline">\(\alpha = 0.05\)</span>.</p>
-<p>Finally, the coefficient on <code>energy_consump</code> is -0.399, reflecting that for every one quadrillion BTU increase in energy consumption, the DOE budget for R&amp;D decreases by 399,000 dollars (2020 USD). The p-value of 0.029 is less than an <span class="math inline">\(\alpha = 0.05\)</span>, making this coefficient statistically significant.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+2771.398
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 1870.516
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+president_party
+</td>
+<td style="text-align:center;">
+285.786
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 149.414
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+outlays
+</td>
+<td style="text-align:center;">
+0.398
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.132
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+outlays_frac_of_gdp
+</td>
+<td style="text-align:center;">
+−77.557
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 52.608
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.149
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+crude_oil_prices
+</td>
+<td style="text-align:center;">
+−0.283
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.407
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.490
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+inflation
+</td>
+<td style="text-align:center;">
+174.065
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 26.941
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+energy_consump
+</td>
+<td style="text-align:center;">
+−0.089
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.050
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = 0.081
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+divided_vs_unified
+</td>
+<td style="text-align:center;">
+148.143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 83.574
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+p = 0.085
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.703
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.645
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
-<li>These coefficients are likely not causa because of the lack of random assignment</li>
-<li>Many of these variables are inherently correlated</li>
-<li>also time-lag between calendar year and fiscal year (presidential and congressional terms do not align with fiscal years; what kind of currnt context affects the determination of a fiscal year relationship)</li>
+<li><p>The coefficient on <code>president_party</code> is approximately 285.79, which implies that under Democratic presidents, the DOE renewable energy budget was about <code>$</code>285.79M larger (in 2020 USD) compared to under Republican presidents. Given that the p-value of this coefficient is 0.064, which is larger than an <span class="math inline">\(\alpha = 0.05\)</span>, this coefficient is not statistically significant, corroborating the results from the hypothesis testing.</p></li>
+<li><p>The coefficient on <code>outlays</code> is 0.398, suggesting that for every <code>$</code>1B increase in the outlays (spending side of the budget), the DOE budget allocated toward renewable energy R&amp;D increases by <code>$</code>398,000 (2020 USD). The p-value here is 0.005, which is less than <span class="math inline">\(\alpha = 0.05\)</span>, so this coefficient is statistically significant.</p></li>
+<li><p>The coefficient on <code>outlays_frac_of_gdp</code> is about -77.56, suggesting that for every 1% increase in outlay as a fraction of U.S. GDP, the DOE budget for renewable energy R&amp;D decreases by <code>$</code>77.56M (2020 USD), maybe pointing to other avenues of Congressional spending besides the DOE. The corresponding p-value here is 0.149, which is larger than <span class="math inline">\(\alpha = 0.05\)</span>, rendering this coefficient not statistically significant.</p></li>
+<li><p>Similarly, the coefficient on <code>crude_oil_prices</code> is approximately -0.283, indicating that for every <code>$</code>1 increase in the price of crude oil globally, measured per cubic meter (2021 USD), the DOE budget for renewable energy R&amp;D decreases by <code>$</code>283,000 (2020 USD). Still, the corresponding p-value of 0.490 is larger than <span class="math inline">\(\alpha = 0.05\)</span>, making this coefficient not statistically significant.</p></li>
+<li><p>On the flip side, the coefficient on <code>inflation</code> is 174.07, showing that for every 1% increase in inflation (measured with regard to consumer prices) in the United States, the DOE budget for renewable energy R&amp;D increases by <code>$</code>174.07M (2020 USD). The corresponding p-value, &lt;0.001, is very significant, as it is substantially smaller than <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>In the same way, the coefficient on <code>energy_consump</code> is -0.089, reflecting that for every one quadrillion BTU increase in energy consumption, the DOE budget for renewable energy R&amp;D decreases by <code>$</code>89,000 dollars (2020 USD). The p-value of 0.081 is greater than an <span class="math inline">\(\alpha = 0.05\)</span>, making this coefficient statistically insignificant.</p></li>
+<li><p>Lastly, the coefficient on <code>divided_vs_unified</code> is 148.14, indicating that for every one additional executive/Congressional entity that is Democratic (i.e., the Presidency switches from Republican to Democrat, or one of the chambers of Congress flips from red to blue), the DOE budget for renewable energy R&amp;D increases by <code>$</code>148.14M (2020 USD). The associated p-value of 0.085 is larger than an <span class="math inline">\(\alpha = 0.05\)</span>, rendering this coefficient statistically insignificant.</p></li>
 </ul>
+<h2 id="discussion">Discussion</h2>
+<p>Despite this mixed result of significant and insignificant independent variable predictors–for both total DOE budget as well as specific to renewable energy R&amp;D–none of these coefficients can be deemed causal, only correlative. Given the nature of this study as both longitudinal and observational, no random assignment was employed, precluding the possibility of drawing causal associations. Furthermore, many of the examined independent variables are inherently correlated. For instance, presidential party control, Congressional party control, and outlays are likely associated with economic indicators that include the price of crude oil, inflation, energy consumption, among other factors not assessed herein. Notably, there also exists a sort of “time-lag” between the calendar and fiscal years. Moreover, Presidential and Congressional terms do not align with fiscal years (which span October 1st of one year to September 30th of the next). As such, the current context probably affects the President’s agenda and Congressional budgetary decisions for the subsequent fiscal year, a dynamic that has a built-in delay, complicating the distinction between causal and correlative relationships between variables.</p>
 <h1 id="conclusion">CONCLUSION</h1>
-<ol start="4" type="1">
-<li>a brief (one paragraph) concluding section that summarizes your results, assesses the extent to which you find support for your hypothesis, describes limitations of your analysis and threats to inference, and states how your analysis could be improved (e.g., improved data that would be useful to collect).</li>
-</ol>
-<ul>
-<li><p>Figure 3: Overall, this graphic seems to indicate that the DOE’s budget for total R&amp;D was highest in its early years (i.e., FY 1978–1981), under President Jimmy Carter (D). Afterward, from FY1982 to 1998, through the presidencies of Ronald Reagan (R), George H.W. Bush (R), and Bill Clinton (D), the budget gradually decreased. However, by 1999, and traversing the leadership of Clinton (D), George W. Bush (R), Barack Obama (D), Donald Trump (R), and Joe Biden (D), the budget has gradually been increasing year-by-year.</p></li>
-<li><p>Somewhat similar trends for Figure 4</p></li>
-</ul>
-<h2 id="future">Future</h2>
-<p>Ideas: hhow track with global spending on energy; how track with oil prices; breakdown by sector; DARPA-E, DARPA-C</p>
+<p>Taken in sum, the DOE’s budget for total R&amp;D was highest in its early years (i.e., FY 1978–1981), under President Jimmy Carter (D). Afterward, from FY1982 to 1998–through the presidencies of Ronald Reagan (R), George H.W. Bush (R), and Bill Clinton (D)–the budget gradually decreased. However, by 1999, and traversing the leadership of Clinton (D), George W. Bush (R), Barack Obama (D), Donald Trump (R), and Joe Biden (D), the budget has gradually been increasing year-by-year (Figure 3). Relatively similar over-time trends are observed with renewable energy as a DOE focus area (Figure 4). From the corresponding regression analysis, while the party of the President and the price of crude oil were not significant predictors of the overall DOE budget, outlays (but not outlays as a fraction of GDP), inflation, energy consumption, and Presidential combined with Congressional partisan control were significant. In a similar way, in terms of predictors for the DOE budget allocated to renewable energy R&amp;D, most predictors matched those for the total DOE budget in terms of whether or not they were deemed statistically significant. THe exceptions were energy consumption and Congressional partisan composition, neither of which was found to be a significant predictor of renewable energy R&amp;D. Overall, I fail to reject the null hypothesis of no difference in 1) total DOE budget and 2) DOE budget directed toward renewable energy based on presidential party. Still, there appears to be some support for rejecting the null hypothesis of no difference in these two dependent variables based on Congressional partisan support. This mixed result could originate from the additional confounding variables that I will take account in future analyses, such as global (not U.S.) consumption of energy; the corresponding budgetary amount of the previous year, the yearly growth in GDP; and spending at the Department of Defense, an entity whose mission is often seen as competing with the DOE for funding. Besides this improved data that would be of merit to collect, overall limitations of this analysis and threats to inference stem from the small sample size, as data for only 45 fiscal years are available. As noted before, this is solely an observational study, interdicting any opportunities for random assignment to determine causal effect. Nonetheless, this exploratory analysis has offered a promising first step in understanding the political and economic dynamics that flow alongside funds (or their lack thereof) to the Department of Energy.</p>
+<h2 id="future-variables-to-consider-previous-years-budget-global-energy-consumptionspending-investments-in-darpa-e-and-darpa-c-gdp-yearly-growth-dod-spending-doe-spending-out-of-total-spending-of-total-budget">Future variables to consider: Previous year’s budget, GLOBAL energy consumption/spending; investments in DARPA-E and DARPA-C; GDP yearly growth; DoD spending; DOE spending out of total spending (% of total budget)</h2>
 <p>–</p>
 <p>From Sample Project</p>
 <p>I am interested in exploring data related to immigration enforcement and immigration preferences. A working project with Asya Magazinnik (Massachusetts Institute of Technology) explores how county-level compliance of Sheriff’s offices with ICE detainer requests relates to ideal point estimates of immigration preferences. Specifically: our project asks whether the public’s immigration preferences, restrictive or accommodating, influences how local law enforcement agencies comply with bureaucratic delegation from ICE.</p>
@@ -2462,14 +2720,14 @@ R2 Adj.
 <hr />
 <p>IGNORE: <a href="https://www.scribbr.com/statistics/anova-in-r/" class="uri">https://www.scribbr.com/statistics/anova-in-r/</a></p>
 <p>base_diff_doernd_presandcong &lt;- divided_vs_unified_data |&gt;
-filter(fiscal_year %in% c(1978:2021)) |&gt;
+filter(fiscal_year %in% c(1978:2022)) |&gt;
 specify(total_doe_rnd ~ divided_vs_unified) |&gt;
 calculate(stat = “diff in means”, order = c(“3 D / 0 R”,
 “2 D / 1 R”,
 “1 D / 2 R”,
 “0 D / 3 R”))
 base_diff_doernd_presandcong</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
