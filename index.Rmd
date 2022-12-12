@@ -79,7 +79,9 @@ total_doe_rnd_basic <- doe_rnd_total |>
        DOE Budget Authority for Energy Research, Development, and Demonstration Database,' 
        The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.")
-total_doe_rnd_basic   
+total_doe_rnd_basic 
+
+ggsave("total_doe_rnd_basic.png")
 ```
 **Figure 1**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022.
 
@@ -105,6 +107,8 @@ total_doe_rnd_re_highlight <- re |>
        The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.")
 total_doe_rnd_re_highlight
+
+ggsave("total_doe_rnd_re_highlight.png")
 ```
 **Figure 2**: Total DOE Energy R&D (gray) and Renewable Energy R&D (green) Investments by Fiscal Year, 1978--2022.
 
@@ -144,6 +148,8 @@ total_doe_rnd_by_pres <- doe_rnd_total |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
        fill = "President Party") 
 total_doe_rnd_by_pres
+
+ggsave("total_doe_rnd_by_pres.png")
 ```
 **Figure 3**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022, color-coded based on the party of the President in power at the time.
 
@@ -169,6 +175,8 @@ total_doe_rnd_with_re_presparty <- re |>
        The Fletcher School, Tufts University; Department of Land Economy, University of Cambridge; 
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.", fill = "President Party")
 total_doe_rnd_with_re_presparty
+
+ggsave("total_doe_rnd_with_re_presparty.png")
 ```
 **Figure 4**: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the party of the President in power at the time.
 
@@ -202,6 +210,8 @@ total_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
        fill = "Presidential and Congressional Control")
 total_doe_rnd_by_pres_and_cong
+
+ggsave("total_doe_rnd_by_pres_and_cong.png")
 ```
 **Figure 5**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
 
@@ -232,6 +242,8 @@ re_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.",
        fill = "Presidential and Congressional Control")
 re_doe_rnd_by_pres_and_cong
+
+ggsave("re_doe_rnd_by_pres_and_cong.png")
 ```
 
 *Figure 6*: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
@@ -274,6 +286,8 @@ doernd_dist_presparty <- doe_rnd_total_presbinary_numbers |>
   visualize() +
   shade_p_value(obs_stat = 790.15, direction = "both")
 doernd_dist_presparty
+
+ggsave("doernd_dist_presparty.png")
 ```
 **Figure 7**: Simulation-based null distribution for the difference in means of the total DOE energy R&D budget under Democratic versus Republican presidencies. The bold red vertical line shows the location of the observed difference between the mean total DOE R&D budget between these two categories, which was `$`790.15 million (D-R).
 
@@ -302,6 +316,8 @@ rernd_dist_presparty <- doe_rnd_total_presbinary_numbers |>
   visualize() +
   shade_p_value(obs_stat = 405.42, direction = "greater")
 rernd_dist_presparty
+
+ggsave("re_rnd_dist_presparty.png")
 ```
 **Figure 8**: Simulation-based null distribution for the difference in means of the DOE energy R&D budget spent on renewable energy under Democratic versus Republican presidencies. The bolded red vertical line at `$`405.42 million depicts the observed difference between the mean DOE R&D budget for renewable energy between these two categories.
 
