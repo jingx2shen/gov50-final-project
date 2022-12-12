@@ -237,70 +237,95 @@ re_doe_rnd_by_pres_and_cong
 
 # Hypothesis Tests
 
-To corroborate the previous visually-presented graphic results, permutation hypothesis tests can also be conducted to gauge if there are any substantial differences in total DOE R&D budget and R&D budget allocated toward renewable energy based upon whether the President belonged to the Democratic or Republican Party, as well as incorporate the partisan makeup of Congress.
+To corroborate the previous visually-presented graphic results, permutation hypothesis tests were also conducted to gauge if there are any substantial differences in total DOE R&D budget and R&D budget allocated toward renewable energy based upon whether the President belonged to the Democratic or Republican Party, as well as incorporate the partisan makeup of Congress as a factor.
 
 ```{r prev-as-binary}
 set.seed(02138)
 library(infer)
 
-dataset_binary <- read_csv("gov50milestone4binary.csv")
-dataset_binary
+doe_rnd_total_presbinary <- read_csv("gov50milestone4binary.csv")
+doe_rnd_total_presbinary
 ```
 
-```{r hypothesis-test_doe-rnd}
-dataset_mut <- dataset_binary |>
+```{r hypothesis-test_doe-rnd_president-party}
+doe_rnd_total_presbinary_numbers <- doe_rnd_total_presbinary |>
   mutate(president_party_binary = if_else(president_party == 1, "Democrat", "Republican")) 
 
-base_diff_doernd <- dataset_mut |>
+base_diff_doernd_presparty <- doe_rnd_total_presbinary_numbers |>
   specify(total_doe_rnd ~ president_party_binary) |>
   calculate(stat = "diff in means", order = c("Democrat", "Republican"))
-base_diff_doernd
+base_diff_doernd_presparty
 
 # 2-sided permutation hypothesis test
-base_p_doernd <- dataset_mut |>
+base_p_doernd_presparty <- doe_rnd_total_presbinary_numbers |>
   specify(total_doe_rnd ~ president_party_binary) |>
   hypothesize(null = "independence") |>
   generate(reps = 1000, type = "permute") |>
   calculate(stat = "diff in means", order = c("Democrat", "Republican")) |>
   get_p_value(obs_stat = base_diff_doernd, direction = "both")
-base_p_doernd
+base_p_doernd_presparty
 
-dist <- dataset_mut |>
+doernd_dist_presparty <- doe_rnd_total_presbinary_numbers |>
   specify(total_doe_rnd ~ president_party_binary) |>
   hypothesize(null = "independence") |>
   generate(reps = 1000, type = "permute") |>
   calculate(stat = "diff in means", order = c("Democrat", "Republican")) |>
   visualize() +
   shade_p_value(obs_stat = 790.15, direction = "both")
-dist
+doernd_dist_presparty
 ```
+*Figure 7*: Simulation-based null distribution for the difference in means of the total DOE energy R&D budget under Democratic versus Republican presidencies. The bolded red vertical line shows the location of the observed difference between the mean total DOE R&D budget between these two categories, which was 790.15 dollars (D-R).
 
-The observed difference between the mean total DOE R&D budgets between all Democratic presidencies and Republican presidencies is 790.15 dollars (D-R), and the corresponding p-value is 0.214. Considering an $/alpha$ of 0.05, since p > 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the DOE R&D budget.
+The observed difference between the mean total DOE R&D budgets between all Democratic presidencies and Republican presidencies was 790.15 dollars (D-R), and the corresponding p-value was 0.176. Considering an $/alpha$ of 0.05, since p > 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&D budget.
 
-```{r hypothesis-test_re-rnd}
-base_diff <- dataset_mut |>
-  specify(total_doe_rnd ~ president_party_binary) |>
+```{r hypothesis-test_re-rnd_president-party}
+base_diff_rernd_presparty <- doe_rnd_total_presbinary_numbers |>
+  specify(re_total ~ president_party_binary) |>
   calculate(stat = "diff in means", order = c("Democrat", "Republican"))
-base_diff
+base_diff_rernd_presparty
 
 # 2-sided permutation hypothesis test
-base_p <- dataset_mut |>
-  specify(total_doe_rnd ~ president_party_binary) |>
+base_p_rernd_presparty <- doe_rnd_total_presbinary_numbers |>
+  specify(re_total ~ president_party_binary) |>
   hypothesize(null = "independence") |>
   generate(reps = 1000, type = "permute") |>
   calculate(stat = "diff in means", order = c("Democrat", "Republican")) |>
-  get_p_value(obs_stat = base_diff, direction = "both")
-base_p
+  get_p_value(obs_stat = base_diff_rernd, direction = "both")
+base_p_rernd_presparty
 
-dist <- dataset_mut |>
-  specify(total_doe_rnd ~ president_party_binary) |>
+rernd_dist_presparty <- doe_rnd_total_presbinary_numbers |>
+  specify(re_total ~ president_party_binary) |>
   hypothesize(null = "independence") |>
   generate(reps = 1000, type = "permute") |>
   calculate(stat = "diff in means", order = c("Democrat", "Republican")) |>
   visualize() +
-  shade_p_value(obs_stat = 790.15, direction = "both")
-dist
+  shade_p_value(obs_stat = 405.42, direction = "greater")
+rernd_dist_presparty
 ```
+*Figure 8*: Simulation-based null distribution for the difference in means of the DOE energy R&D budget spent on renewable energy under Democratic versus Republican presidencies. The bolded red vertical line at 405.42 dollars depicts the observed difference between the mean DOE R&D budget for renewable energy between these two categories.
+
+The observed difference between the DOE R&D budgets directed toward renewable energy between all Democratic presidencies and Republican presidencies was 405.42 dollars (D-R), and the corresponding p-value was 0.01. With an $/alpha$ of 0.05, since p < 0.05, we have evidence to reject the null hypothesis of no effect. Said another way, there is a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&D budget.
+
+```{r ANOVA-test_doe-rnd_by_pres-and-cong}
+# 1-way ANOVA test to see if difference in means between different levels of presidential + Congressional control are statistically significant (for DOE budget allocated toward RE)
+
+total_doe_rnd_ANOVA = aov(total_doe_rnd ~ divided_vs_unified, data = divided_vs_unified_data) 
+summary(total_doe_rnd_ANOVA)
+```
+
+The Pr(>F) value for this ANOVA test is about 0.0004, which is much less than $\alpha = 0.05$, lending support for rejecting the null hypothesis of no difference in means between the total DOE R&D budget based on the party makeup of Congress and the Presidency. In other words, it appears that the partisan makeup of Congress and the Presidency has a real impact on the total DOE R&D budget. 
+
+```{r ANOVA-test_re-rnd_by_pres-and-cong}
+# 1-way ANOVA test to see if difference in means between different levels of presidential + Congressional control are statistically significant (for total DOE budget)
+
+re_rnd_ANOVA = aov(re_rnd ~ divided_vs_unified, data = divided_vs_unified_data) 
+summary(re_rnd_ANOVA)
+```
+
+Here, this Pr(>F) value is approximately 0.0002, which is substantially below $\alpha = 0.05$, which supports rejecting the null hypothesis of no difference in means between the DOE R&D budget directed toward renewable energy based on the party makeup of Congress and the Presidency. Said another way, it seems that the partisan makeup of Congress and the Presidency has a substantial impact on the DOE R&D budget spent on renewable energy.
+
+
+xxx
 
 
 ## JOINS 
@@ -439,3 +464,16 @@ TRAC data provides us with our outcome variable, the proportion of ICE detainer 
 --
 
 Does unified government enhance legislative productivity? In this study, I plan to examine the extent to which periods of unified government produce more landmark laws. I hypothesize that legislative productivity increases during periods of unified government in which one party controls both Houses of Congress and the presidency relative to periods of divided government. During periods of unified government, I expect that it is more likely for major bills to pass both Houses and gain the president’s signature. During periods of divided government, it is more difficult to reach a consensus around legislation that can pass each House and gain the president’s approval. My sample is comprised of each of the 79th (1945-1946) through 103rd (1993-1994) Congresses. My unit of analysis is a Congress (e.g., the 88th Congress). The explanatory variable of interest is whether there is unified government (both Houses and the presidency are controlled by the same party) or divided government. The variable is coded =1 for unified government and =0 for divided government. My outcome variable is the count of landmark pieces of legislation passed in a given Congress. For instance, if the variable were coded =11, it would mean that 11 pieces of landmark legislation were signed into law in that Congress. This variable is measured from David Mayhew’s data set on landmark legislation and relies on Mayhew’s expert knowledge to classify legislation as “landmark.” If I observe greater landmark legislative productivity under unified government relative to divided government, this would provide support for my hypothesis. If, on the other hand, I observe less productivity or the same level of productivity under unified government, this would provide evidence against my hypothesis. When I run my regression of the count of landmark legislation on the unified government indicator variable, a positive, significant coefficient would indicate support for my hypothesis.
+
+---
+
+IGNORE
+
+base_diff_doernd_presandcong <- divided_vs_unified_data |>
+  filter(fiscal_year %in% c(1978:2021)) |>
+  specify(total_doe_rnd ~ divided_vs_unified) |>
+  calculate(stat = "diff in means", order = c("3 D / 0 R", 
+                                              "2 D / 1 R",
+                                              "1 D / 2 R",
+                                              "0 D / 3 R"))
+base_diff_doernd_presandcong  
