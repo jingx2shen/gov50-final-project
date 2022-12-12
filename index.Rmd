@@ -72,7 +72,7 @@ total_doe_rnd_basic <- doe_rnd_total |>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   geom_col() +
   labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests (million 2020$)",
+       y = "FY Requests (million 2020$)",
        title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon, 
@@ -81,7 +81,7 @@ total_doe_rnd_basic <- doe_rnd_total |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.")
 total_doe_rnd_basic 
 
-ggsave("total_doe_rnd_basic.png", width = 4, height = 5)
+ggsave("total_doe_rnd_basic.png", width = 4, height = 4)
 ```
 ![](total_doe_rnd_basic.png)
 **Figure 1**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022.
@@ -100,7 +100,7 @@ total_doe_rnd_re_highlight <- re |>
   geom_bar(data = re, mapping = aes(y = as.double(re_rnd)), width = 0.3, stat = "identity", fill = "seagreen3") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
    labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests: Total and Renewable Energy (million 2020$)",
+       y = "FY Requests (million 2020$)",
        title = "Total and Renewable Energy DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon,
@@ -109,7 +109,7 @@ total_doe_rnd_re_highlight <- re |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.")
 total_doe_rnd_re_highlight
 
-ggsave("total_doe_rnd_re_highlight.png")
+ggsave("total_doe_rnd_re_highlight.png", width = 4, height = 4)
 ```
 **Figure 2**: Total DOE Energy R&D (gray) and Renewable Energy R&D (green) Investments by Fiscal Year, 1978--2022.
 
@@ -140,7 +140,7 @@ total_doe_rnd_by_pres <- doe_rnd_total |>
   scale_fill_manual(values = c(Democrat = "blue", 
                                Republican = "red")) +
   labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests (million 2020$)",
+       y = "FY Requests (million 2020$)",
        title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon, 
@@ -150,7 +150,7 @@ total_doe_rnd_by_pres <- doe_rnd_total |>
        fill = "President Party") 
 total_doe_rnd_by_pres
 
-ggsave("total_doe_rnd_by_pres.png")
+ggsave("total_doe_rnd_by_pres.png", width = 4, height = 4)
 ```
 **Figure 3**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022, color-coded based on the party of the President in power at the time.
 
@@ -168,7 +168,7 @@ total_doe_rnd_with_re_presparty <- re |>
   scale_fill_manual(values = c("1" = "blue", "0" = "red"), 
                     labels = c("Democrat", "Republican")) +
   labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests: Total and Renewable Energy (million 2020$)",
+       y = "FY Requests (million 2020$)",
        title = "Total and Renewable Energy DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon, 
@@ -177,7 +177,7 @@ total_doe_rnd_with_re_presparty <- re |>
        and Belfer Center for Science and International Affairs, Harvard Kennedy School; April 8, 2022.", fill = "President Party")
 total_doe_rnd_with_re_presparty
 
-ggsave("total_doe_rnd_with_re_presparty.png")
+ggsave("total_doe_rnd_with_re_presparty.png", width = 4, height = 4)
 ```
 **Figure 4**: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the party of the President in power at the time.
 
@@ -202,7 +202,7 @@ total_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
                                "1 D / 2 R",
                                "0 D / 3 R")) +
   labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests (million 2020$)",
+       y = "FY Requests (million 2020$)",
        title = "Total DOE Energy R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon, 
@@ -212,7 +212,7 @@ total_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
        fill = "Presidential and Congressional Control")
 total_doe_rnd_by_pres_and_cong
 
-ggsave("total_doe_rnd_by_pres_and_cong.png")
+ggsave("total_doe_rnd_by_pres_and_cong.png", width = 4, height = 4)
 ```
 **Figure 5**: Total DOE Energy R&D Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
 
@@ -234,7 +234,7 @@ re_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
                                "1 D / 2 R",
                                "0 D / 3 R")) +
   labs(x = "Fiscal Year", 
-       y = "DOE Energy R&D FY Requests (million 2020$)",
+       y = "FY Requests (million 2020$)",
        title = "Total and Renewable Energy DOE R&D Investments by Fiscal Year, 1978-2022",
        caption = "SOURCE: 
        Gallagher, K.S. and L.D. Anadon, 
@@ -244,7 +244,7 @@ re_doe_rnd_by_pres_and_cong <- divided_vs_unified_data |>
        fill = "Presidential and Congressional Control")
 re_doe_rnd_by_pres_and_cong
 
-ggsave("re_doe_rnd_by_pres_and_cong.png")
+ggsave("re_doe_rnd_by_pres_and_cong.png", width = 4, height = 4)
 ```
 
 *Figure 6*: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
