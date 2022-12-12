@@ -1587,7 +1587,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span>, vjust <span class='op'>=</span> <span class='fl'>0.5</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests (million 2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"FY Requests (million 2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total DOE Energy R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon, </span></span>
@@ -1598,7 +1598,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/total-doe-rnd_basic-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_basic.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_basic.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><img src="total_doe_rnd_basic.png" />
@@ -1617,7 +1617,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>re</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='va'>re_rnd</span><span class='op'>)</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.3</span>, stat <span class='op'>=</span> <span class='st'>"identity"</span>, fill <span class='op'>=</span> <span class='st'>"seagreen3"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span>, vjust <span class='op'>=</span> <span class='fl'>0.5</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests: Total and Renewable Energy (million 2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"FY Requests (million 2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total and Renewable Energy DOE Energy R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon,</span></span>
@@ -1628,7 +1628,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/doe-rnd_renewables-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_re_highlight.png"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_re_highlight.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><strong>Figure 2</strong>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (green) Investments by Fiscal Year, 1978–2022.</p>
@@ -1653,7 +1653,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Democrat <span class='op'>=</span> <span class='st'>"blue"</span>, </span>
 <span>                               Republican <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests (million 2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"FY Requests (million 2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total DOE Energy R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon, </span></span>
@@ -1665,7 +1665,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/total-doe-rnd_by-pres-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_by_pres.png"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_by_pres.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><strong>Figure 3</strong>: Total DOE Energy R&amp;D Investments by Fiscal Year, 1978–2022, color-coded based on the party of the President in power at the time.</p>
@@ -1683,7 +1683,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span> <span class='op'>=</span> <span class='st'>"blue"</span>, <span class='st'>"0"</span> <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>, </span>
 <span>                    labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Democrat"</span>, <span class='st'>"Republican"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests: Total and Renewable Energy (million 2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"FY Requests (million 2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total and Renewable Energy DOE Energy R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon, </span></span>
@@ -1694,7 +1694,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/totaldoernd_with-re-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_with_re_presparty.png"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_with_re_presparty.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><strong>Figure 4</strong>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (colored) Investments by Fiscal Year, 1978–2022, color-coded based on the party of the President in power at the time.</p>
@@ -1737,7 +1737,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>                               <span class='st'>"1 D / 2 R"</span>,</span>
 <span>                               <span class='st'>"0 D / 3 R"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests (million 2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"FY Requests (million 2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total DOE Energy R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon, </span></span>
@@ -1749,7 +1749,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/total-doe-rnd_by-pres-and-cong-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_by_pres_and_cong.png"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_by_pres_and_cong.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><strong>Figure 5</strong>: Total DOE Energy R&amp;D Investments by Fiscal Year, 1978–2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress.</p>
@@ -1771,7 +1771,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>                               <span class='st'>"1 D / 2 R"</span>,</span>
 <span>                               <span class='st'>"0 D / 3 R"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Fiscal Year"</span>, </span>
-<span>       y <span class='op'>=</span> <span class='st'>"DOE Energy R&amp;D FY Requests (million 2020$)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"FY Requests (million 2020$)"</span>,</span>
 <span>       title <span class='op'>=</span> <span class='st'>"Total and Renewable Energy DOE R&amp;D Investments by Fiscal Year, 1978-2022"</span>,</span>
 <span>       caption <span class='op'>=</span> <span class='st'>"SOURCE: </span></span>
 <span><span class='st'>       Gallagher, K.S. and L.D. Anadon, </span></span>
@@ -1783,7 +1783,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/re-doe-rnd_by-pres-and-cong-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"re_doe_rnd_by_pres_and_cong.png"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"re_doe_rnd_by_pres_and_cong.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p><em>Figure 6</em>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (colored) Investments by Fiscal Year, 1978–2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress.</p>
