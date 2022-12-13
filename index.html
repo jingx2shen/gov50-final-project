@@ -1854,7 +1854,8 @@ Explanatory: president_party_binary (factor)
     &lt;dbl&gt;
 1   0.266</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>doernd_dist_presparty</span> <span class='op'>&lt;-</span> <span class='va'>doe_rnd_total_presbinary_numbers</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># 1-sided permutation hypothesis test </span></span>
+<span><span class='va'>doernd_dist_presparty</span> <span class='op'>&lt;-</span> <span class='va'>doe_rnd_total_presbinary_numbers</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>total_doe_rnd</span> <span class='op'>~</span> <span class='va'>president_party_binary</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
