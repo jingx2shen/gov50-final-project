@@ -1631,7 +1631,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_re_highlight.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p><strong>Figure 2</strong>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (green) Investments by Fiscal Year, 1978–2022.</p>
+<p><img src="total_doe_rnd_re_highlight.png" />
+<strong>Figure 2</strong>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (green) Investments by Fiscal Year, 1978–2022.</p>
 <h1 id="results-1">RESULTS</h1>
 <h2 id="graphs-of-the-main-relationships">Graphs of the Main Relationships</h2>
 <p>In this study, there are several relationships of analysis:</p>
@@ -1668,6 +1669,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_by_pres.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p><img src="total_doe_rnd_by_pres.png" /></p>
 <p><strong>Figure 3</strong>: Total DOE Energy R&amp;D Investments by Fiscal Year, 1978–2022, color-coded based on the party of the President in power at the time.</p>
 <p>Applying the same presidential party-based color coding scheme to Figure 2 depicts the renewable energy R&amp;D budget of the DOE based on the party of the President in control.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1697,7 +1699,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_with_re_presparty.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p><strong>Figure 4</strong>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (colored) Investments by Fiscal Year, 1978–2022, color-coded based on the party of the President in power at the time.</p>
+<p><img src="total_doe_rnd_with_re_presparty.png" />
+<strong>Figure 4</strong>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (colored) Investments by Fiscal Year, 1978–2022, color-coded based on the party of the President in power at the time.</p>
 <p>Rather than solely applying color codes based on the party of the president, the DOE’s overall budget for energy R&amp;D can also be analyzed with respect to the partisan composition of the president as well as both chambers of Congress. In the chart below, a Democratic trifecta (Democratic president, Senate, and House) is colored in dark blue, a 2:1 Democratic composition (out of the president, Senate, and House, two entities are controlled by Democrats) in light blue, a 2:1 Republican composition in light red, and a Republican trifecta in dark red.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1752,7 +1755,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"total_doe_rnd_by_pres_and_cong.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p><strong>Figure 5</strong>: Total DOE Energy R&amp;D Investments by Fiscal Year, 1978–2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress.</p>
+<p><img src="total_doe_rnd_by_pres_and_cong.png" />
+<strong>Figure 5</strong>: Total DOE Energy R&amp;D Investments by Fiscal Year, 1978–2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress.</p>
 <p>In a similar manner, the previous analysis can also be executed for the DOE’s spending in renewable energy R&amp;D.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1786,6 +1790,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"re_doe_rnd_by_pres_and_cong.png"</span>, width <span class='op'>=</span> <span class='fl'>4</span>, height <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p><img src="re_doe_rnd_by_pres_and_cong.png" /></p>
 <p><em>Figure 6</em>: Total DOE Energy R&amp;D (gray) and Renewable Energy R&amp;D (colored) Investments by Fiscal Year, 1978–2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress.</p>
 <h2 id="hypothesis-tests">Hypothesis Tests</h2>
 <p>To corroborate the previous visually-presented graphic results, permutation hypothesis tests were also conducted to gauge if there are any substantial differences in total DOE R&amp;D budget and R&amp;D budget allocated toward renewable energy based upon whether the President belonged to the Democratic or Republican Party, as well as incorporate the partisan makeup of Congress as a factor.</p>
@@ -1863,6 +1868,7 @@ Explanatory: president_party_binary (factor)
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"doernd_dist_presparty.png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p><img src="doernd_dist_presparty.png" /></p>
 <p><strong>Figure 7</strong>: Simulation-based null distribution for the difference in means of the total DOE energy R&amp;D budget under Democratic versus Republican presidencies. The bold red vertical line shows the location of the observed difference between the mean total DOE R&amp;D budget between these two categories, which was <code>$</code>790.15 million (D-R).</p>
 <p>The observed difference between the mean total DOE R&amp;D budgets between all Democratic presidencies and Republican presidencies was <code>$</code>790.15 million (D-R), and the corresponding p-value was 0.176. Considering an <span class="math inline">\(/alpha\)</span> of 0.05, since p &gt; 0.05, we do not have evidence to reject the null hypothesis of no effect. In other words, there is not a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&amp;D budget.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1907,6 +1913,7 @@ Explanatory: president_party_binary (factor)
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"re_rnd_dist_presparty.png"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
+<p><img src="re_rnd_dist_presparty.png" /></p>
 <p><strong>Figure 8</strong>: Simulation-based null distribution for the difference in means of the DOE energy R&amp;D budget spent on renewable energy under Democratic versus Republican presidencies. The bolded red vertical line at <code>$</code>405.42 million depicts the observed difference between the mean DOE R&amp;D budget for renewable energy between these two categories.</p>
 <p>The observed difference between the DOE R&amp;D budgets directed toward renewable energy between all Democratic presidencies and Republican presidencies was <code>$</code>405.42 million (D-R), and the corresponding p-value was 0.01. With an <span class="math inline">\(/alpha\)</span> of 0.05, since p &lt; 0.05, we have evidence to reject the null hypothesis of no effect. Said another way, there is a statistically significant difference between Democratic and Republican presidencies in terms of the total DOE R&amp;D budget.</p>
 <h2 id="anova-testing">ANOVA testing</h2>
