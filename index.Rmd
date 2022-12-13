@@ -253,7 +253,7 @@ ggsave("re_doe_rnd_by_pres_and_cong.png", width = 4, height = 4)
 ```
 ![](re_doe_rnd_by_pres_and_cong.png)
 
-*Figure 6*: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
+**Figure 6**: Total DOE Energy R&D (gray) and Renewable Energy R&D (colored) Investments by Fiscal Year, 1978--2022, color-coded based on the partisan makeup of the Presidency and both chambers of Congress. 
 
 ## Hypothesis Tests
 
@@ -285,6 +285,7 @@ base_p_doernd_presparty <- doe_rnd_total_presbinary_numbers |>
   get_p_value(obs_stat = base_diff_doernd_presparty, direction = "both")
 base_p_doernd_presparty
 
+# 1-sided permutation hypothesis test 
 doernd_dist_presparty <- doe_rnd_total_presbinary_numbers |>
   specify(total_doe_rnd ~ president_party_binary) |>
   hypothesize(null = "independence") |>
